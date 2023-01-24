@@ -21,5 +21,9 @@ export default function Auth (
         <Navigate to={isReady && !user ? `/login?redirect=${encodeURIComponent(location.pathname + location.search)}` : "/"}/>
     );
 
-    return !isReady ? null : (user && roles.includes(user.role) ? <>{children}</> : (shouldRedirect ? navigate : null));
+    return !isReady ? null : (
+        <>
+            {user && roles.includes(user.role) ? children : shouldRedirect ? navigate : null}
+        </>
+    )
 }
