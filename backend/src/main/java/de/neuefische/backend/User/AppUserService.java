@@ -38,7 +38,7 @@ public class AppUserService {
                                 .stream()
                                 .noneMatch(ga -> ga.getAuthority().equals("ROLE_ADMIN"))
         ) {
-            appUser.setRole("BASIC");
+            appUser.setRole("USER");
         }
 
         appUserRepository.save(appUser);
