@@ -27,7 +27,7 @@ function App() {
           </NoAuth>
         }/>
         <Route path="/" element={
-          <Auth roles={["BASIC", "ADMIN"]}>
+          <Auth roles={["USER", "ADMIN"]}>
             <HomePage/>
           </Auth>
         }/>

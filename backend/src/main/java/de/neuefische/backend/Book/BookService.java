@@ -22,4 +22,8 @@ public class BookService {
                 appUserService.getAuthenticatedUser().getId()
         );
     }
+
+    public void delete(String id) {
+        bookRepository.deleteById(id);
+    }
 }

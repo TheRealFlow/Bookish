@@ -36,7 +36,7 @@ export default function LoginPage () {
             try {
                 await axios.post("/user/login", null, {
                     headers: {
-                        "Authorization": "User " + window.btoa(`${credentials.username}:${credentials.password}`)
+                        "Authorization": "Basic " + window.btoa(`${credentials.username}:${credentials.password}`)
                     }
                 });
 
