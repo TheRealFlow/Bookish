@@ -20,4 +20,9 @@ public class BookController {
     public Book create (@RequestBody Book book) {
         return bookService.create(book);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteById (@PathVariable String id) {
+        bookService.delete(id);
+    }
 }
