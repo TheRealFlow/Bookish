@@ -48,7 +48,7 @@ export default function HomePage (props: HomePageProps) {
                         <p>{book.isbn}</p>
                         <p>{book.pages}</p>
                         <p>{book.year}</p>
-                        <button onClick={() => deleteHandler}>Delete</button>
+                        <button onClick={() => book.id ? deleteHandler(book.id) : null}>Delete</button>
                         <UpdateBook book={book} updateBook={updateHandler}/>
                     </li>
                 </ul>)}

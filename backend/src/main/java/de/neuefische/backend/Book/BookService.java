@@ -23,7 +23,7 @@ public class BookService {
         );
     }
 
-    public void deleteById(String id) {
+    public void deleteBook(String id) {
         bookRepository.deleteById(id);
     }
 
