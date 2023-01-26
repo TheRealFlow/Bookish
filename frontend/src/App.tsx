@@ -9,7 +9,7 @@ import HomePage from "./pages/HomePage";
 import useBooks from "./hooks/useBooks";
 
 function App() {
-    const {book, books, getAllBooks, addNewBook, deleteBook, updateBook} = useBooks();
+    const {books, getAllBooks, addNewBook, deleteBook, updateBook} = useBooks();
     const [searchParams] = useSearchParams();
       const redirect = useMemo(
           () => searchParams.get("redirect") || "/",
@@ -30,7 +30,7 @@ function App() {
         }/>
         <Route path="/" element={
           <Auth roles={["USER", "ADMIN"]}>
-            <HomePage addNewBook={addNewBook} getAllBooks={getAllBooks} books={books} deleteBook={deleteBook} book={book} updateBook={updateBook}/>
+            <HomePage addNewBook={addNewBook} getAllBooks={getAllBooks} books={books} deleteBook={deleteBook} updateBook={updateBook}/>
           </Auth>
         }/>
       </Routes>

@@ -5,7 +5,6 @@ import {toast} from "react-toastify";
 
 export default function useBooks() {
     const [books, setBooks] = useState<Book[]>([])
-    const [book, setBook] = useState<Book>({} as Book)
 
     useEffect(() => {
         getAllBooks();
@@ -39,5 +38,5 @@ export default function useBooks() {
             .catch((error) => toast.error(error.message));
     }
 
-    return {book, books, getAllBooks ,addNewBook, updateBook, deleteBook};
+    return {books, getAllBooks ,addNewBook, updateBook, deleteBook};
 }

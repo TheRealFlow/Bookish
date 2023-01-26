@@ -6,7 +6,6 @@ import {Book} from "../Model/Book";
 import UpdateBook from "../Components/UpdateBook";
 
 type HomePageProps = {
-    book: Book;
     books: Book[];
     getAllBooks: () => void;
     addNewBook: (book: Book) => void;
@@ -38,12 +37,12 @@ export default function HomePage (props: HomePageProps) {
             <h1>HomePage</h1>
             <p>List of your Books</p>
             {props.books.map((book) =>
-                <ul key={props.book.id}>
+                <ul key={book.id}>
                     <li>
                         <h2>{book.title}</h2>
                         <p>{book.author}</p>
                         <p>{book.description}</p>
-                        <img src={book.imageUrl} alt={props.book.title}/>
+                        <img src={book.imageUrl} alt={book.title}/>
                         <p>{book.genre}</p>
                         <p>{book.isbn}</p>
                         <p>{book.pages}</p>
