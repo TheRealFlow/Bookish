@@ -52,39 +52,34 @@ export default function LoginPage () {
     );
 
     return (
-        <div className="LoginPage">
-            <h1>Login</h1>
+        <>
+            <div>
+                <h3>Login</h3>
 
-            {errors.length > 0 && (
-                <div>
-                    {errors.map((error) => <p key={error}>{error}</p>)}
-                </div>
-            )}
+                {errors.length > 0 && (
+                        <div>
+                            {errors.map((error) => <p key={error}>{error}</p>)}
+                        </div>
+                )}
 
-            <form onSubmit={login}>
-                <div>
+                <form onSubmit={login}>
                     <input
-                        placeholder={"username"}
+                        type="text"
+                        name="username"
+                        placeholder="username"
                         value={credentials.username}
-                        name={"username"}
                         onChange={handleChange}
                     />
-                </div>
-
-                <div>
                     <input
-                        placeholder={"password"}
-                        type={"password"}
-                        name={"password"}
+                        type="password"
+                        name="password"
+                        placeholder="password"
                         value={credentials.password}
                         onChange={handleChange}
                     />
-                </div>
-
-                <div>
-                    <button>Login</button> or <Link to={"/signup" + location.search}>sign up here</Link>
-                </div>
-            </form>
-        </div>
+                    <button>Login</button> or <Link to={"/signup" + location.search}>Sign Up</Link>
+                </form>
+            </div>
+        </>
     );
 }

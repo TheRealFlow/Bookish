@@ -6,13 +6,15 @@ import Auth from "./Auth/Auth";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
+import useBooks from "./hooks/useBooks";
 
 function App() {
-  const [searchParams] = useSearchParams();
-  const redirect = useMemo(
-      () => searchParams.get("redirect") || "/",
-      [searchParams]
-  );
+    const {book, books, getAllBooks, addNewBook, deleteBook, updateBook} = useBooks();
+    const [searchParams] = useSearchParams();
+      const redirect = useMemo(
+          () => searchParams.get("redirect") || "/",
+          [searchParams]
+      );
 
   return (
       <Routes>
@@ -28,7 +30,7 @@ function App() {
         }/>
         <Route path="/" element={
           <Auth roles={["USER", "ADMIN"]}>
-            <HomePage/>
+            <HomePage addNewBook={addNewBook} getAllBooks={getAllBooks} books={books} deleteBook={deleteBook} book={book} updateBook={updateBook}/>
           </Auth>
         }/>
       </Routes>

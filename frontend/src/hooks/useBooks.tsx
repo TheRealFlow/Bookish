@@ -1,26 +1,43 @@
 import {useEffect, useState} from "react";
-import {Book} from "../Components/Book";
+import {Book} from "../Model/Book";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 export default function useBooks() {
     const [books, setBooks] = useState<Book[]>([])
+    const [book, setBook] = useState<Book>({} as Book)
 
     useEffect(() => {
-        (async () => {
-            const res = await axios.get("/books")
-            setBooks(res.data)
-        })();
+        getAllBooks();
     }, []);
 
-    async function addBook(book: { pages: number; year: number; author: string; imageUrl: string; isbn: string; genre: string; description: string; title: string }) {
-        const res = await axios.post("/books", book)
-        setBooks([...books, res.data])
+    const getAllBooks = () => {
+        axios.get("/books")
+            .then(response => response.data)
+            .then(books => setBooks(books))
+            .catch((error) => toast.error(error.message));
     }
 
-    async function deleteBook(id: string) {
-        await axios.delete(`/books/${id}`)
-        setBooks(books.filter((book) => book.id !== id))
+    const addNewBook = (book: Book) => {
+        axios.post("/books", book)
+            .then(() => toast.success("Book added successfully!"))
+            .then(() => getAllBooks())
+            .catch((error) => toast.error(error.message));
     }
 
-    return {books, addBook, deleteBook}
+    const updateBook = (book: Book) => {
+        axios.post("/books", book)
+            .then(() => toast.success("Book updated successfully!"))
+            .then(() => getAllBooks())
+            .catch((error) => toast.error(error.message));
+    }
+
+    const deleteBook = (id: string) => {
+        axios.delete(`/books/${id}`)
+            .then(() => toast.success("Book deleted successfully!"))
+            .then(() => getAllBooks())
+            .catch((error) => toast.error(error.message));
+    }
+
+    return {book, books, getAllBooks ,addNewBook, updateBook, deleteBook};
 }

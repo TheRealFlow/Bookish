@@ -23,7 +23,11 @@ public class BookService {
         );
     }
 
-    public void delete(String id) {
+    public void deleteById(String id) {
         bookRepository.deleteById(id);
+    }
+
+    public Book update(Book book) {
+        return bookRepository.save(book);
     }
 }
