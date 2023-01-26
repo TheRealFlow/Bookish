@@ -22,7 +22,13 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById (@PathVariable String id) {
-        bookService.delete(id);
+    public void deleteBook (@PathVariable String id) {
+        bookService.deleteBook(id);
+    }
+
+    @PutMapping("/{id}")
+    public Book update (@PathVariable String id, @RequestBody Book book) {
+        book.setId(id);
+        return bookService.update(book);
     }
 }
