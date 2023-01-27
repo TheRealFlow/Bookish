@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +24,11 @@ public class BookService {
         );
     }
 
+    public Book getBookById(String id) {
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Book with the ID: " + id + " not found"));
+    }
+
     public void deleteBook(String id) {
         bookRepository.deleteById(id);
     }
@@ -30,4 +36,5 @@ public class BookService {
     public Book update(Book book) {
         return bookRepository.save(book);
     }
+
 }
