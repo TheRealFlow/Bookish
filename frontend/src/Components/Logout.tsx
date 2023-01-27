@@ -1,6 +1,7 @@
 import {useCallback} from "react";
 import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
+import {Button} from "@mui/material";
 
 export default function Logout() {
     const navigate = useNavigate();
@@ -14,6 +15,6 @@ export default function Logout() {
     }, [location, navigate]);
 
     return (
-        <button onClick={logout}>Logout</button>
+        <Button variant={"outlined"} onClick={logout}>Logout</Button>
     )
 }
