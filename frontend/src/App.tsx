@@ -8,6 +8,8 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import useBooks from "./hooks/useBooks";
 import UserPage from "./pages/UserPage";
+import DetailPage from "./pages/DetailPage";
+
 
 function App() {
     const {books, getAllBooks, addNewBook, deleteBook, updateBook} = useBooks();
@@ -17,29 +19,37 @@ function App() {
           [searchParams]
       );
 
-  return (
-      <Routes>
-        <Route path="/signup" element={
-          <NoAuth redirect={redirect}>
-            <SignUpPage/>
-          </NoAuth>
-        }/>
-        <Route path="/login" element={
-          <NoAuth redirect={redirect}>
-            <LoginPage/>
-          </NoAuth>
-        }/>
-        <Route path="/" element={
-          <Auth roles={["USER", "ADMIN"]}>
-            <HomePage />
-          </Auth>
-        }/>
-        <Route path="/mypage" element={
-          <Auth roles={["USER"]}>
-              <UserPage addNewBook={addNewBook} getAllBooks={getAllBooks} books={books} deleteBook={deleteBook} updateBook={updateBook}/>
-          </Auth>
-        }/>
-      </Routes>
+
+    return (
+      <>
+          <Routes>
+            <Route path="/signup" element={
+              <NoAuth redirect={redirect}>
+                <SignUpPage/>
+              </NoAuth>
+            }/>
+            <Route path="/login" element={
+              <NoAuth redirect={redirect}>
+                <LoginPage/>
+              </NoAuth>
+            }/>
+            <Route path="/" element={
+              <Auth roles={["USER", "ADMIN"]}>
+                <HomePage />
+              </Auth>
+            }/>
+            <Route path="/mypage" element={
+              <Auth roles={["USER", "ADMIN"]}>
+                  <UserPage addNewBook={addNewBook} getAllBooks={getAllBooks} books={books}/>
+              </Auth>
+            }/>
+              <Route path="/detail/:id" element={
+                  <Auth roles={["USER", "ADMIN"]}>
+                      <DetailPage deleteBook={deleteBook} updateBook={updateBook} />
+                  </Auth>
+              }/>
+          </Routes>
+      </>
   );
 }
 

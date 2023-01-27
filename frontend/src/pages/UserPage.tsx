@@ -1,19 +1,35 @@
 import {Book} from "../Model/Book";
-import {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import getMe from "../hooks/getMe";
-import UpdateBook from "../Components/UpdateBook";
 import AddNewBook from "../Components/AddNewBook";
-import Logout from "../Auth/Logout";
+import Logout from "../Components/Logout";
+import {
+    Box,
+    Button,
+    Container,
+    IconButton,
+    ImageList,
+    ImageListItem,
+    ImageListItemBar,
+    Typography
+} from "@mui/material";
+import InfoIcon from '@mui/icons-material/Info';
+import {Link, useNavigate} from "react-router-dom";
 
 type HomePageProps = {
     books: Book[];
     getAllBooks: () => void;
     addNewBook: (book: Book) => void;
-    deleteBook: (id: string) => void;
-    updateBook: (book: Book) => void;
 }
 
 export default function UserPage(props: HomePageProps) {
+    const navigate = useNavigate();
+    const [showAddForm, setShowAddForm] = useState(false);
+
+    const handleShowAddForm = () => {
+        setShowAddForm(current => !current);
+    }
+
     useEffect(() => {
         (async () => {
             const user = await getMe();
@@ -24,33 +40,49 @@ export default function UserPage(props: HomePageProps) {
         })();
     }, []);
 
-    const deleteHandler = (id: string) => {
-        props.deleteBook(id);
-    }
-    const updateHandler = (book: Book) => {
-        props.updateBook(book);
-    }
 
     return (
-        <>
-            <p>List of your Books</p>
+        <Container>
+
+            <Typography variant={"h3"}>Book List</Typography>
+
+            <Box>
             {props.books.map((book) =>
-                <ul key={book.id}>
-                    <li>
-                        <h2>{book.title}</h2>
-                        <p>{book.author}</p>
-                        <p>{book.description}</p>
-                        <img src={book.imageUrl} alt={book.title}/>
-                        <p>{book.genre}</p>
-                        <p>{book.isbn}</p>
-                        <p>{book.pages}</p>
-                        <p>{book.year}</p>
-                        <button onClick={() => book.id ? deleteHandler(book.id) : null}>Delete</button>
-                        <UpdateBook book={book} updateBook={updateHandler}/>
-                    </li>
-                </ul>)}
-            <AddNewBook books={props.books} addNewBook={props.addNewBook} getAllBooks={props.getAllBooks}/>
-            <Logout/>
-        </>
+                <ImageList sx={{ width: 500, height: 400 }} key={book.id}>
+                    <ImageListItem key={book.imageUrl}>
+                        <img
+                            src={book.imageUrl}
+                            srcSet={book.imageUrl}
+                            alt={book.title}
+                        />
+                        <ImageListItemBar
+                            title={book.title}
+                            subtitle={<span>by: {book.author}</span>}
+                            actionIcon={<IconButton
+                                onClick={() => navigate(`/detail/${book.id}`)}
+                                sx={{ color: 'rgba(255, 255, 255, 0.9)' }}
+                                aria-label={`info about ${book.title}`}>
+                                <InfoIcon />
+                            </IconButton>}
+                        />
+
+                    </ImageListItem>
+                </ImageList>)}
+            </Box>
+
+            <Button onClick={handleShowAddForm}>Add new Book</Button>
+            {showAddForm && (
+                <AddNewBook books={props.books} addNewBook={props.addNewBook} getAllBooks={props.getAllBooks}/>
+            )}
+
+
+            <Box sx={{my: 20}}>
+                <Logout/>
+                <Button sx={{mx: 6}} variant={"contained"}>
+                    <Link to={"/"}>Home</Link>
+                </Button>
+            </Box>
+
+        </Container>
     );
 }

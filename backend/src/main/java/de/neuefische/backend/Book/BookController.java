@@ -16,6 +16,11 @@ public class BookController {
         return bookService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Book getBookById (@PathVariable String id) {
+        return bookService.getBookById(id);
+    }
+
     @PostMapping
     public Book create (@RequestBody Book book) {
         return bookService.create(book);
