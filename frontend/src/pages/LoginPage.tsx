@@ -1,6 +1,7 @@
 import React, {FormEvent, useCallback, useMemo, useState} from "react";
 import {Link, useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import axios from "axios";
+import {Box, Button, Container, TextField, Typography} from "@mui/material";
 
 export default function LoginPage () {
     const [credentials, setCredentials] = useState({
@@ -52,9 +53,9 @@ export default function LoginPage () {
     );
 
     return (
-        <>
-            <div>
-                <h3>Login</h3>
+        <Container sx={{my: 10, display: "flex", flexDirection: "column", alignItems: "center"}}>
+
+                <Typography sx={{my: 2}} variant={"h3"}>Login</Typography>
 
                 {errors.length > 0 && (
                         <div>
@@ -62,24 +63,36 @@ export default function LoginPage () {
                         </div>
                 )}
 
-                <form onSubmit={login}>
-                    <input
+            <form onSubmit={login}>
+                <Box sx={{my: 2}}>
+                    <TextField
+                        variant={"outlined"}
+                        label="Username"
                         type="text"
                         name="username"
                         placeholder="username"
                         value={credentials.username}
                         onChange={handleChange}
                     />
-                    <input
+                </Box>
+                <Box sx={{my: 2}}>
+                    <TextField
+                        variant={"outlined"}
+                        label="Password"
                         type="password"
                         name="password"
                         placeholder="password"
                         value={credentials.password}
                         onChange={handleChange}
                     />
-                    <button>Login</button> or <Link to={"/signup" + location.search}>Sign Up</Link>
-                </form>
-            </div>
-        </>
+                </Box>
+                <Box sx={{my: 3, display: "flex", flexDirection: "column"}}>
+                    <Button sx={{px: 6, py: 1.5}} variant={"contained"} type={"submit"}>Login</Button>
+                    <Button sx={{px: 6, py: 1.5, my: 8}} variant={"outlined"}>
+                        <Link to={"/signup" + location.search}>Sign Up now</Link>
+                    </Button>
+                </Box>
+            </form>
+        </Container>
     );
 }
