@@ -1,4 +1,4 @@
-import {Book} from "../Model/Book";
+import {Book} from "../Types/Book";
 import React, {useEffect, useState} from "react";
 import getMe from "../hooks/getMe";
 import AddNewBook from "../Components/AddNewBook";

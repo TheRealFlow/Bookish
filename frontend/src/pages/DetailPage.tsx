@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import useBookDetails from "../hooks/useBookDetails";
-import {Book} from "../Model/Book";
+import {Book} from "../Types/Book";
 import {Box, Button, Container, Paper, Typography} from "@mui/material";
 import {green, grey, red} from "@mui/material/colors";
 import UpdateBook from "../Components/UpdateBook";

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Book} from "../Model/Book";
+import {Book} from "../Types/Book";
 import axios from "axios";
 import {toast} from "react-toastify";
 

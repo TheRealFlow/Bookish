@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Book} from "../Model/Book";
+import {Book} from "../Types/Book";
 
 type AddNewBookProps = {
     books: Book[];
