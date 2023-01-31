@@ -1,26 +1,9 @@
 import Logout from "../Components/Logout";
 import {Link} from "react-router-dom";
 import {Box, Button, Container, Typography} from "@mui/material";
-import React, {useState} from "react";
-import axios from "axios";
-import {BookAPI} from "../Types/BookAPI";
+import React from "react";
 
 export default function HomePage () {
-    const [search, setSearch] = useState("");
-    const [result, setResult] = useState([]);
-
-    const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setSearch(event.target.value);
-    }
-
-    const handleSubmit = (event: { preventDefault: () => void; }) => {
-        event.preventDefault();/**/
-        axios.get("https://www.googleapis.com/books/v1/volumes?q=" + search + "&key=AIzaSyC2jzd6VDxU8aIhWzQIWNkZQi4boNbx7Pg&maxResults=20")
-            .then(data => {
-                console.log(data.data.items);
-                setResult(data.data.items);
-            })
-    }
 
     // @ts-ignore
     return (
@@ -36,20 +19,9 @@ export default function HomePage () {
             </Box>
 
             <Box>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Search for books" onChange={handleChange}/>
-                    <button value={search}>Search</button>
-                </form>
-
-                <ul>
-                    {result.map((b: BookAPI) => (
-                    <li key={b.id}>
-                        <h3>{b.volumeInfo.title}</h3>
-                        <p>{b.volumeInfo.authors}</p>
-                        <p>{b.volumeInfo.description}</p>
-                        <img src={b.volumeInfo.imageLinks && b.volumeInfo.imageLinks.smallThumbnail} alt={b.volumeInfo.title}/>
-                    </li>))}
-                </ul>
+                <Button sx={{px: 6, py: 1.5}} variant={"outlined"}>
+                    <Link to={"/search"}>Nach neuen Büchern suchen</Link>
+                </Button>
             </Box>
 
             <Box sx={{my: 20}}>
