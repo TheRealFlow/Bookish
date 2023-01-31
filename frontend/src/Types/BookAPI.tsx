@@ -12,8 +12,4 @@ export type BookAPI = {
             smallThumbnail: string;
         }
     }
-    industryIdentifiers: {
-        type: string;
-        identifier: string;
-    }
 }

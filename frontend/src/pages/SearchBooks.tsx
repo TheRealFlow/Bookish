@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import axios from "axios";
 import {BookAPI} from "../Types/BookAPI";
-import {Box, IconButton, ImageList, ImageListItem, ImageListItemBar, TextField} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search"
-import InfoIcon from "@mui/icons-material/Info";
+import {Box, Container, IconButton, TextField, Typography} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function SearchBooks() {
     const [search, setSearch] = useState("");
@@ -44,24 +43,44 @@ export default function SearchBooks() {
 
             <Box>
                 {result.map((item: BookAPI) => (
-                    <ImageList sx={{mx: 8, width: 500, height: 400 }} key={item.id}>
-                        <ImageListItem key={item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail}>
-                            <img
-                                src={item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail}
-                                srcSet={item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail}
-                                alt={item.volumeInfo.title}
-                            />
-                            <ImageListItemBar
-                                title={item.volumeInfo.title}
-                                subtitle={<span>by: {item.volumeInfo.authors}</span>}
-                                actionIcon={<IconButton
-                                    sx={{ color: 'rgba(255, 255, 255, 0.9)' }}
-                                    aria-label={`info about ${item.volumeInfo.title}`}>
-                                    <InfoIcon />
-                                </IconButton>}
-                            />
-                        </ImageListItem>
-                    </ImageList>
+                    <Container sx={{ m: 5, p: 5, border: 1, borderRadius: "5px" }}>
+                            <Box>
+                                {item.volumeInfo.imageLinks === undefined ?
+                                    <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"} alt={"No Image Available"}/> :
+                                    <Box component={"img"}
+                                         sx={{height: 300, width: 220}}
+                                         src={item.volumeInfo.imageLinks.thumbnail}
+                                         alt={item.volumeInfo.title}>
+                                    </Box>}
+                            </Box>
+                            <Box sx={{borderBottom: 1}}>
+                                <>
+                                    {item.volumeInfo.title === undefined ?
+                                        <Typography>Unknown Title</Typography> :
+                                    <Typography variant={"h5"}>{item.volumeInfo.title}</Typography>}
+
+                                    {item.volumeInfo.authors === undefined ?
+                                        <Typography>Unknown Author</Typography> :
+                                    <Typography variant={"h6"}>- {item.volumeInfo.authors} -</Typography>}
+                                </>
+                            </Box>
+                            <Box sx={{borderBottom: 1, my: 1.5}}>
+                                {item.volumeInfo.description === undefined ?
+                                    <Typography>No description available</Typography> :
+                                <Typography>{item.volumeInfo.description}</Typography>}
+                            </Box>
+                            <Box>
+                                <>
+                                    {item.volumeInfo.publishedDate === undefined ?
+                                        <Typography>Unknown Publication Date</Typography> :
+                                    <Typography>Published: {item.volumeInfo.publishedDate}</Typography>}
+
+                                    {item.volumeInfo.pageCount === undefined ?
+                                        <Typography>Unknown Pages</Typography> :
+                                    <Typography>Pages: {item.volumeInfo.pageCount}</Typography>}
+                                </>
+                            </Box>
+                    </Container>
                     ))}
             </Box>
         </>
