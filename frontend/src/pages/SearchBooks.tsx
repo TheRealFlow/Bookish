@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
-import ApiKey from "../../../config";
+import ApiKey from "../config";
 import {BookAPI} from "../Types/BookAPI";
 import {Box, Container, IconButton, TextField, Typography} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -48,7 +48,7 @@ export default function SearchBooks() {
                     <Container sx={{ m: 5, p: 5, border: 1, borderRadius: "5px" }}>
                             <Box>
                                 {item.volumeInfo.imageLinks === undefined ?
-                                    <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"} alt={"No Image Available"}/> :
+                                    <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"} alt={"Not Available"}/> :
                                     <Box component={"img"}
                                          sx={{height: 300, width: 220}}
                                          src={item.volumeInfo.imageLinks.thumbnail}
