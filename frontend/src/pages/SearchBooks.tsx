@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
-import ApiKey from "../Auth/APIKey";
+import ApiKey from "../../../config";
 import {BookAPI} from "../Types/BookAPI";
 import {Box, Container, IconButton, TextField, Typography} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
