@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class UserServiceTests {
+class UserServiceTests {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
