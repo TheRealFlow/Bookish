@@ -1,4 +1,4 @@
-import {Book} from "../Model/Book";
+import {Book} from "../Types/Book";
 import React, {useState} from "react";
 
 type UpdateBookProps = {

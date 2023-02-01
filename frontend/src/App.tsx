@@ -9,7 +9,7 @@ import HomePage from "./pages/HomePage";
 import useBooks from "./hooks/useBooks";
 import UserPage from "./pages/UserPage";
 import DetailPage from "./pages/DetailPage";
-
+import SearchBooks from "./pages/SearchBooks";
 
 function App() {
     const {books, getAllBooks, addNewBook, deleteBook, updateBook} = useBooks();
@@ -46,6 +46,11 @@ function App() {
               <Route path="/detail/:id" element={
                   <Auth roles={["USER", "ADMIN"]}>
                       <DetailPage deleteBook={deleteBook} updateBook={updateBook} />
+                  </Auth>
+              }/>
+              <Route path="/search" element={
+                  <Auth roles={["USER", "ADMIN"]}>
+                      <SearchBooks />
                   </Auth>
               }/>
           </Routes>
