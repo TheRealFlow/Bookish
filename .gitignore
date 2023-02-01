@@ -8,6 +8,9 @@
 **/*.iml
 **/*.ipr
 
+# API Key
+frontend/src/Auth/APIKey.tsx
+
 # Backend Generated files
 backend/src/main/resources/static
 backend/target

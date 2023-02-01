@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
+import ApiKey from "../Auth/APIKey";
 import {BookAPI} from "../Types/BookAPI";
 import {Box, Container, IconButton, TextField, Typography} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -7,6 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 export default function SearchBooks() {
     const [search, setSearch] = useState("");
     const [result, setResult] = useState([]);
+    const apikey = ApiKey();
 
     const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
         setSearch(event.target.value);
@@ -14,7 +16,7 @@ export default function SearchBooks() {
 
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        axios.get("https://www.googleapis.com/books/v1/volumes?q=" + search + "&key=AIzaSyC2jzd6VDxU8aIhWzQIWNkZQi4boNbx7Pg&maxResults=20")
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${apikey}&maxResults=20`)
             .then(data => {
                 console.log(data.data.items);
                 setResult(data.data.items);
