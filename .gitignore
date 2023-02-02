@@ -15,6 +15,7 @@ backend/target
 # Frontend generated files
 frontend/node_modules
 frontend/build
+frontend/.env
 
 # Testing log files
 npm-debug.log*
