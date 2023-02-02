@@ -6,7 +6,7 @@ import Logout from "../Components/Logout";
 import {
     Box,
     Button,
-    Container,
+    Container, Dialog, DialogActions, DialogTitle,
     IconButton,
     ImageList,
     ImageListItem,
@@ -27,7 +27,10 @@ export default function UserPage(props: HomePageProps) {
     const [showAddForm, setShowAddForm] = useState(false);
 
     const handleShowAddForm = () => {
-        setShowAddForm(current => !current);
+        setShowAddForm(true);
+    }
+    const handleCloseAddForm = () => {
+        setShowAddForm(false);
     }
 
     useEffect(() => {
@@ -71,9 +74,13 @@ export default function UserPage(props: HomePageProps) {
             </Box>
 
             <Button onClick={handleShowAddForm}>Add new Book</Button>
-            {showAddForm && (
-                <AddNewBook books={props.books} addNewBook={props.addNewBook} getAllBooks={props.getAllBooks}/>
-            )}
+                <Dialog open={showAddForm} onClose={handleCloseAddForm}>
+                    <DialogTitle>Add new Book</DialogTitle>
+                    <AddNewBook addNewBook={props.addNewBook} getAllBooks={props.getAllBooks} />
+                <DialogActions>
+                    <Button onClick={handleCloseAddForm}>Close</Button>
+                </DialogActions>
+                </Dialog>
 
 
             <Box sx={{my: 20}}>
