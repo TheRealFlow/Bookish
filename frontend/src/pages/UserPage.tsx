@@ -14,7 +14,7 @@ import {
     Typography
 } from "@mui/material";
 import InfoIcon from '@mui/icons-material/Info';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 type HomePageProps = {
     books: Book[];
@@ -49,6 +49,15 @@ export default function UserPage(props: HomePageProps) {
 
             <Typography variant={"h3"}>Book List</Typography>
 
+            <Button onClick={handleShowAddForm} variant={"contained"}>Add new Book</Button>
+            <Dialog open={showAddForm} onClose={handleCloseAddForm}>
+                <DialogTitle>Add new Book</DialogTitle>
+                <AddNewBook addNewBook={props.addNewBook} getAllBooks={props.getAllBooks} />
+                <DialogActions>
+                    <Button onClick={handleCloseAddForm}>Close</Button>
+                </DialogActions>
+            </Dialog>
+
             <Box>
             {props.books.map((book) =>
                 <ImageList sx={{ width: 500, height: 400 }} key={book.id}>
@@ -73,21 +82,9 @@ export default function UserPage(props: HomePageProps) {
                 </ImageList>)}
             </Box>
 
-            <Button onClick={handleShowAddForm}>Add new Book</Button>
-                <Dialog open={showAddForm} onClose={handleCloseAddForm}>
-                    <DialogTitle>Add new Book</DialogTitle>
-                    <AddNewBook addNewBook={props.addNewBook} getAllBooks={props.getAllBooks} />
-                <DialogActions>
-                    <Button onClick={handleCloseAddForm}>Close</Button>
-                </DialogActions>
-                </Dialog>
-
-
             <Box sx={{my: 20}}>
                 <Logout/>
-                <Button sx={{mx: 6}} variant={"contained"}>
-                    <Link to={"/"}>Home</Link>
-                </Button>
+                <Button sx={{mx: 6}} variant={"contained"} onClick={() => navigate("/")}>Home</Button>
             </Box>
 
         </Container>

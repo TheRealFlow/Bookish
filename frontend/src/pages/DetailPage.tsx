@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import useBookDetails from "../hooks/useBookDetails";
 import {Book} from "../Types/Book";
-import {Box, Button, Container, Paper, Typography} from "@mui/material";
+import {Box, Button, Container, Dialog, DialogTitle, Paper, Typography} from "@mui/material";
 import {green, grey, red} from "@mui/material/colors";
 import UpdateBook from "../Components/UpdateBook";
 
@@ -15,10 +15,13 @@ export default function DetailPage(props: DetailPageProps) {
     const navigate = useNavigate();
     const {id} = useParams<{id: string}>();
     const {bookDetails} = useBookDetails(id);
-    const [showAddForm, setShowAddForm] = useState(false);
+    const [showEditForm, setShowEditForm] = useState(false);
 
-    const handleShowAddForm = () => {
-        setShowAddForm(current => !current);
+    const handleShowEditForm = () => {
+        setShowEditForm(true);
+    }
+    const handleCloseEditForm = () => {
+        setShowEditForm(false);
     }
     const handleDelete = (id: string) => {
         props.deleteBook(id);
@@ -48,11 +51,15 @@ export default function DetailPage(props: DetailPageProps) {
                 </Box>
                 <Box>
                     <Button onClick={() => id ? handleDelete(id) : null} sx={{my: 5, mx: 5, px: 2, py: 1, bgcolor: red[500]}} variant={"contained"}>Delete</Button>
-                    <Button onClick={handleShowAddForm} sx={{my: 5, mx: 2, px: 2, py: 1, bgcolor: green[500]}} variant={"contained"}>Edit Book</Button>
-                    {showAddForm && (
+
+                    <Button onClick={handleShowEditForm} sx={{my: 5, mx: 2, px: 2, py: 1, bgcolor: green[500]}} variant={"contained"}>Edit Book</Button>
+                    <Dialog open={showEditForm} onClose={handleCloseEditForm}>
+                        <DialogTitle>Edit this Book</DialogTitle>
+                    {showEditForm && (
                         //@ts-ignore
                         <UpdateBook updateBook={handleUpdate} book={bookDetails}/>
                     )}
+                    </Dialog>
                 </Box>
                     <Button sx={{my: 5, mx: 15, px: 2, py: 1, bgcolor: grey[500]}} variant={"contained"} onClick={() => navigate("/mypage")}>Back</Button>
             </Paper>

@@ -1,5 +1,6 @@
 import {Book} from "../Types/Book";
 import React, {useState} from "react";
+import {Box, Button, TextField} from "@mui/material";
 
 type UpdateBookProps = {
     book: Book;
@@ -36,15 +37,17 @@ export default function UpdateBook(props: UpdateBookProps) {
 
     return (
         <form onSubmit={saveBook}>
-            <input name={"title"} placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)}/>
-            <input name={"author"} placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)}/>
-            <input name={"description"} placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)}/>
-            <input name={"imageUrl"} placeholder="Image URL" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)}/>
-            <input name={"genre"} placeholder="Genre" value={genre} onChange={(e) => setGenre(e.target.value)}/>
-            <input name={"isbn"} placeholder="ISBN" value={isbn} onChange={(e) => setIsbn(e.target.value)}/>
-            <input name={"pages"} type={"number"} placeholder="Pages" value={pages} onChange={(e) => setPages(parseInt(e.target.value))}/>
-            <input name={"year"} type={"number"} placeholder="Year" value={year} onChange={(e) => setYear(parseInt(e.target.value))}/>
-            <button>Update Book</button>
+            <Box sx={{p: 2, display: "flex", flexDirection: "column", width: 300}}>
+                <TextField autoFocus margin={"dense"} name={"title"} label="Title" type={"text"} variant={"standard"} value={title} onChange={(e) => setTitle(e.target.value)}/>
+                <TextField margin={"dense"} name={"author"} label="Author" type={"text"} variant={"standard"} value={author} onChange={(e) => setAuthor(e.target.value)}/>
+                <TextField margin={"dense"} name={"description"} label="Description" type={"text"} variant={"standard"} value={description} onChange={(e) => setDescription(e.target.value)}/>
+                <TextField margin={"dense"} name={"imageUrl"} label="Image URL" type={"text"} variant={"standard"} value={imageUrl} onChange={(e) => setImageUrl(e.target.value)}/>
+                <TextField margin={"dense"} name={"genre"} label="Genre" type={"text"} variant={"standard"} value={genre} onChange={(e) => setGenre(e.target.value)}/>
+                <TextField margin={"dense"} name={"isbn"} label="ISBN" type={"text"} variant={"standard"} value={isbn} onChange={(e) => setIsbn(e.target.value)}/>
+                <TextField margin={"dense"} name={"pages"} label="Pages" type={"number"} variant={"standard"} value={pages} onChange={(e) => setPages(parseInt(e.target.value))}/>
+                <TextField margin={"dense"} name={"year"} label="Year" type={"number"} variant={"standard"} value={year} onChange={(e) => setYear(parseInt(e.target.value))}/>
+                <Button sx={{marginTop: 5}} type={"submit"} variant={"contained"}>Update Book</Button>
+            </Box>
         </form>
     );
 }
