@@ -6,7 +6,7 @@ import Logout from "../Components/Logout";
 import {
     Box,
     Button,
-    Container,
+    Container, Dialog, DialogActions, DialogTitle,
     IconButton,
     ImageList,
     ImageListItem,
@@ -14,7 +14,7 @@ import {
     Typography
 } from "@mui/material";
 import InfoIcon from '@mui/icons-material/Info';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 type HomePageProps = {
     books: Book[];
@@ -27,7 +27,10 @@ export default function UserPage(props: HomePageProps) {
     const [showAddForm, setShowAddForm] = useState(false);
 
     const handleShowAddForm = () => {
-        setShowAddForm(current => !current);
+        setShowAddForm(true);
+    }
+    const handleCloseAddForm = () => {
+        setShowAddForm(false);
     }
 
     useEffect(() => {
@@ -45,6 +48,15 @@ export default function UserPage(props: HomePageProps) {
         <Container>
 
             <Typography variant={"h3"}>Book List</Typography>
+
+            <Button onClick={handleShowAddForm} variant={"contained"}>Add new Book</Button>
+            <Dialog open={showAddForm} onClose={handleCloseAddForm}>
+                <DialogTitle>Add new Book</DialogTitle>
+                <AddNewBook addNewBook={props.addNewBook} getAllBooks={props.getAllBooks} />
+                <DialogActions>
+                    <Button onClick={handleCloseAddForm}>Close</Button>
+                </DialogActions>
+            </Dialog>
 
             <Box>
             {props.books.map((book) =>
@@ -70,17 +82,9 @@ export default function UserPage(props: HomePageProps) {
                 </ImageList>)}
             </Box>
 
-            <Button onClick={handleShowAddForm}>Add new Book</Button>
-            {showAddForm && (
-                <AddNewBook books={props.books} addNewBook={props.addNewBook} getAllBooks={props.getAllBooks}/>
-            )}
-
-
             <Box sx={{my: 20}}>
                 <Logout/>
-                <Button sx={{mx: 6}} variant={"contained"}>
-                    <Link to={"/"}>Home</Link>
-                </Button>
+                <Button sx={{mx: 6}} variant={"contained"} onClick={() => navigate("/")}>Home</Button>
             </Box>
 
         </Container>
