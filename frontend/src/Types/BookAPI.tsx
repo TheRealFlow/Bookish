@@ -8,6 +8,7 @@ export type BookAPI = {
         categories: string[];
         pageCount: number;
         publishedDate: string;
+        infoLink: string;
         industryIdentifiers: {
             0: {
                 type: string;

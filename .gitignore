@@ -15,6 +15,7 @@ backend/target
 # Frontend generated files
 frontend/node_modules
 frontend/build
+frontend/.env
 
 # Testing log files
 npm-debug.log*
@@ -22,7 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # Local env files
-**/.env
 **/.env.local
 **/.env.development.local
 **/.env.test.local

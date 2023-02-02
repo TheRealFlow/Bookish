@@ -16,7 +16,7 @@ export default function SearchBooks() {
 
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.API_KEY}&maxResults=20`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_API_KEY}&maxResults=20`)
             .then(data => {
                 console.log(data.data.items);
                 setResult(data.data.items);
@@ -46,7 +46,7 @@ export default function SearchBooks() {
             <Box>
                 {result.map((item: BookAPI) => (
 
-                        <Container sx={{ m: 5, p: 5, border: 1, borderRadius: "5px" }}>
+                        <Container sx={{ m: 5, p: 5, border: 1, borderRadius: "5px" }} key={item.id}>
 
                             <Box>
                                 {item.volumeInfo.imageLinks === undefined ?
@@ -93,7 +93,9 @@ export default function SearchBooks() {
                                 </>
                             </Box>
 
-                            <Button variant={"contained"}>Add to my List</Button>
+                            <a href={item.volumeInfo.infoLink} target={"_blank"} rel={"noreferrer"}>
+                                <Button variant={"contained"}>See Details</Button>
+                            </a>
 
                         </Container>
                 ))}
