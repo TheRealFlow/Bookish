@@ -2,6 +2,7 @@ import React, {FormEvent, useCallback, useMemo, useState} from "react";
 import {Link, useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import axios from "axios";
 import {Box, Button, Container, TextField, Typography} from "@mui/material";
+import {toast} from "react-toastify";
 
 export default function LoginPage () {
     const [credentials, setCredentials] = useState({
@@ -43,10 +44,15 @@ export default function LoginPage () {
 
                 navigate(redirect);
             } catch (e) {
-                setErrors((errors) => [
-                    ...errors,
-                    "Invalid username or password"
-                ]);
+                toast.error("Incorrect Username or Password",
+                    {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                    });
+                setErrors((errors) => [...errors,]);
             }
         },
         [credentials, navigate, redirect]

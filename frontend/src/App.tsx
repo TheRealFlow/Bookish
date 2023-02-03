@@ -10,6 +10,8 @@ import useBooks from "./hooks/useBooks";
 import UserPage from "./pages/UserPage";
 import DetailPage from "./pages/DetailPage";
 import SearchBooks from "./pages/SearchBooks";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     const {books, getAllBooks, addNewBook, deleteBook, updateBook} = useBooks();
@@ -20,6 +22,8 @@ function App() {
       );
 
     return (
+        <>
+          <ToastContainer/>
           <Routes>
             <Route path="/signup" element={
               <NoAuth redirect={redirect}>
@@ -52,6 +56,7 @@ function App() {
                   </Auth>
               }/>
           </Routes>
+        </>
   );
 }
 
