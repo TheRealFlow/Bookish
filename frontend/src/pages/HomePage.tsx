@@ -18,7 +18,7 @@ export default function HomePage () {
 
                 <Box sx={{my: 1, display: "flex", flexDirection: "column"}}>
                     <Button sx={{px: 6, py: 1.5, my: 8}} variant={"outlined"}>
-                        <Link to={"/mypage"}>Hier gehts zu deinen Büchern</Link>
+                        <Link to={"/mybooks"}>Hier gehts zu deinen Büchern</Link>
                     </Button>
                 </Box>
 

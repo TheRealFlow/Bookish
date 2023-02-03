@@ -7,9 +7,10 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import useBooks from "./hooks/useBooks";
-import UserPage from "./pages/UserPage";
+import BooksPage from "./pages/BooksPage";
 import DetailPage from "./pages/DetailPage";
 import SearchBooks from "./pages/SearchBooks";
+import ProfilePage from "./pages/ProfilPage";
 
 function App() {
     const {books, getAllBooks, addNewBook, deleteBook, updateBook} = useBooks();
@@ -36,9 +37,9 @@ function App() {
                 <HomePage />
               </Auth>
             }/>
-            <Route path="/mypage" element={
+            <Route path="/mybooks" element={
               <Auth roles={["USER", "ADMIN"]}>
-                  <UserPage addNewBook={addNewBook} getAllBooks={getAllBooks} books={books}/>
+                  <BooksPage addNewBook={addNewBook} getAllBooks={getAllBooks} books={books}/>
               </Auth>
             }/>
               <Route path="/detail/:id" element={
@@ -49,6 +50,11 @@ function App() {
               <Route path="/search" element={
                   <Auth roles={["USER", "ADMIN"]}>
                       <SearchBooks />
+                  </Auth>
+              }/>
+              <Route path="/profile" element={
+                  <Auth roles={["USER"]}>
+                      <ProfilePage />
                   </Auth>
               }/>
           </Routes>

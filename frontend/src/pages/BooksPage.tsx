@@ -22,7 +22,7 @@ type HomePageProps = {
     addNewBook: (book: Book) => void;
 }
 
-export default function UserPage(props: HomePageProps) {
+export default function BooksPage(props: HomePageProps) {
     const navigate = useNavigate();
     const [showAddForm, setShowAddForm] = useState(false);
 

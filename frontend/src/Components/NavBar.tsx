@@ -67,7 +67,7 @@ export default function NavBar() {
                                 }}
                             >
                                 <MenuItem onClick={handleCloseNavMenu}>
-                                    <Link href='/mypage'>My Book</Link>
+                                    <Link href='/mybooks'>My Book</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleCloseNavMenu}>
                                     <Link href='/bookclubs'>Bookclubs</Link>
