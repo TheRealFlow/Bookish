@@ -18,7 +18,7 @@ public class FileController {
 
     @PostMapping
     public FileMetadata uploadFile (
-            @RequestParam("image") MultipartFile file
+            @RequestParam("file") MultipartFile file
     ) throws IOException {
         return fileService.saveFile(file);
     }

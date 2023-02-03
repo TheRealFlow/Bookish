@@ -36,7 +36,7 @@ public class FileService {
                 multipartFile.getOriginalFilename(),
                 multipartFile.getContentType(),
                 BasicDBObjectBuilder.start()
-                        .add("createdBy", "neuefische")
+                        .add("createdBy", "user")
                         .get()
         );
 
