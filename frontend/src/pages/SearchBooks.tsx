@@ -7,6 +7,7 @@ import {
     ImageListItem, ImageListItemBar, Paper,
     TextField, Typography,
 } from "@mui/material";
+import NavBar from "../Components/NavBar";
 
 export default function SearchBooks() {
     const [search, setSearch] = useState("");
@@ -27,6 +28,7 @@ export default function SearchBooks() {
 
     return (
         <>
+            <NavBar/>
             <Paper elevation={5} sx={{p: .25}}>
 
                 <Box sx={{marginTop: 2, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>

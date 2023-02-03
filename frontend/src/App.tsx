@@ -19,9 +19,7 @@ function App() {
           [searchParams]
       );
 
-
     return (
-      <>
           <Routes>
             <Route path="/signup" element={
               <NoAuth redirect={redirect}>
@@ -54,7 +52,6 @@ function App() {
                   </Auth>
               }/>
           </Routes>
-      </>
   );
 }
 

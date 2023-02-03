@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import useBookDetails from "../hooks/useBookDetails";
 import {Book} from "../Types/Book";
-import {Box, Button, Container, Dialog, DialogTitle, Paper, Typography} from "@mui/material";
+import {Box, Button, Container, Dialog, DialogActions, DialogTitle, Paper, Typography} from "@mui/material";
 import {green, grey, red} from "@mui/material/colors";
 import UpdateBook from "../Components/UpdateBook";
+import NavBar from "../Components/NavBar";
 
 type DetailPageProps = {
     deleteBook: (id: string) => void;
@@ -35,6 +36,8 @@ export default function DetailPage(props: DetailPageProps) {
 
 
     return (
+        <>
+        <NavBar/>
         <Container sx={{maxWidth: 375, display: "flex", flexDirection: "column", justifyContent: "center"}}>
             <Paper elevation={3}>
                     <Typography variant={"h5"}>{bookDetails?.title}</Typography>
@@ -59,11 +62,16 @@ export default function DetailPage(props: DetailPageProps) {
                         //@ts-ignore
                         <UpdateBook updateBook={handleUpdate} book={bookDetails}/>
                     )}
+                        <DialogActions>
+                            <Button onClick={handleCloseEditForm} variant={"outlined"}>Close</Button>
+                        </DialogActions>
                     </Dialog>
+
+                    <Button onClick={() => navigate("/mypage")} sx={{my: 5, mx: 2, px: 2, py: 1, bgcolor: grey[500]}} variant={"contained"}>Back</Button>
                 </Box>
-                    <Button sx={{my: 5, mx: 15, px: 2, py: 1, bgcolor: grey[500]}} variant={"contained"} onClick={() => navigate("/mypage")}>Back</Button>
             </Paper>
         </Container>
+        </>
     )
 }
 
