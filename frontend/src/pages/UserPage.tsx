@@ -2,7 +2,6 @@ import {Book} from "../Types/Book";
 import React, {useEffect, useState} from "react";
 import getMe from "../hooks/getMe";
 import AddNewBook from "../Components/AddNewBook";
-import Logout from "../Components/Logout";
 import {
     Box,
     Button,
@@ -15,6 +14,7 @@ import {
 } from "@mui/material";
 import InfoIcon from '@mui/icons-material/Info';
 import {useNavigate} from "react-router-dom";
+import NavBar from "../Components/NavBar";
 
 type HomePageProps = {
     books: Book[];
@@ -45,6 +45,8 @@ export default function UserPage(props: HomePageProps) {
 
 
     return (
+        <>
+        <NavBar/>
         <Container>
 
             <Typography variant={"h3"}>Book List</Typography>
@@ -82,11 +84,7 @@ export default function UserPage(props: HomePageProps) {
                 </ImageList>)}
             </Box>
 
-            <Box sx={{my: 20}}>
-                <Logout/>
-                <Button sx={{mx: 6}} variant={"contained"} onClick={() => navigate("/")}>Home</Button>
-            </Box>
-
         </Container>
+        </>
     );
 }
