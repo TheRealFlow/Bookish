@@ -16,7 +16,7 @@ public class AppUserService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     public AppUser create (AppUser appUser) {
-        Optional<AppUser> existingAppUser = findByUsername(
+        Optional<AppUser> existingAppUser = appUserRepository.findByUsername(
                 appUser.getUsername()
         );
 

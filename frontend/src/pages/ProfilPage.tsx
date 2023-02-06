@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {Button, Paper, TextField, Typography} from "@mui/material";
-import {PhotoCamera} from "@mui/icons-material";
+import {EditOutlined, PhotoCamera} from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import NavBar from "../Components/NavBar";
 
@@ -16,13 +16,18 @@ export default function ProfilePage() {
             <NavBar/>
             <Typography variant={"h4"} sx={{my: 1.5}}>My Profile</Typography>
 
-                {imgPreview && (
+                {imgPreview === null ?
+                    <Box sx={{width: "200px", height: "200px", borderRadius: "50%", backgroundColor: "#7D93A6", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+                        <Button variant={"contained"} endIcon={<PhotoCamera/>} onClick={() => {
+                            fileInputRef.current?.click();
+                        }}> SELECT IMAGE</Button>
+                    </Box> :
                     <img
                         style={{width: "200px", height: "200px", borderRadius: "50%"}}
                         src={imgPreview}
                         alt={"preview"}
                     />
-                )}
+                }
 
             <form onSubmit={async (e) => {
                 e.preventDefault();
@@ -35,9 +40,9 @@ export default function ProfilePage() {
                         .catch((error) => toast.error(error.message));
                 }
                 }}>
-                <Button sx={{marginTop: 2, marginLeft: 14}} variant={"outlined"} endIcon={<PhotoCamera/>} onClick={() => {
+                <Button sx={{marginTop: 2, marginLeft: 14}} variant={"outlined"} endIcon={<EditOutlined/>} onClick={() => {
                     fileInputRef.current?.click();
-                }}> SELECT IMAGE</Button>
+                }}>Change Image</Button>
 
                 <input
                     ref={fileInputRef}

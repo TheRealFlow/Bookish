@@ -17,7 +17,7 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping
-    public FileMetadata uploadFile (
+    public String uploadFile (
             @RequestParam("file") MultipartFile file
     ) throws IOException {
         return fileService.saveFile(file);
@@ -34,10 +34,8 @@ public class FileController {
                 .body(new InputStreamResource(gridFsResource.getInputStream()));
     }
 
-    @GetMapping("/{id}/metadata")
-    public FileMetadata getFileMetadata (
-            @PathVariable String id
-    ) {
-        return fileService.getFileMetadata(id);
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable String id) {
+        fileService.deleteById(id);
     }
 }
