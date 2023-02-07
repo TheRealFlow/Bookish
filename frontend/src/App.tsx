@@ -7,9 +7,11 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import useBooks from "./hooks/useBooks";
-import BooksPage from "./pages/BooksPage";
 import DetailPage from "./pages/DetailPage";
 import SearchBooks from "./pages/SearchBooks";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import BooksPage from "./pages/BooksPage";
 import ProfilePage from "./pages/ProfilPage";
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
       );
 
     return (
+        <>
+          <ToastContainer/>
           <Routes>
             <Route path="/signup" element={
               <NoAuth redirect={redirect}>
@@ -53,11 +57,12 @@ function App() {
                   </Auth>
               }/>
               <Route path="/profile" element={
-                  <Auth roles={["USER"]}>
+                  <Auth roles={["USER", "ADMIN"]}>
                       <ProfilePage />
                   </Auth>
               }/>
           </Routes>
+        </>
   );
 }
 

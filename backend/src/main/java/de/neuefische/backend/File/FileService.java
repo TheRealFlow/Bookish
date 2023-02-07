@@ -26,7 +26,7 @@ public class FileService {
     private final GridFsTemplate gridFsTemplate;
     private final AppUserService appUserService;
 
-    public String saveFile (MultipartFile multipartFile) throws IOException {
+    public FileMetadata saveFile (MultipartFile multipartFile) throws IOException {
         if (multipartFile.isEmpty()) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST,
@@ -44,7 +44,7 @@ public class FileService {
                         .add("createdBy", appUser.getUsername())
                         .get()
         );
-        return objectId.toString();
+        return getFileMetadata(objectId.toString());
     }
 
     public GridFsResource getResource(String id) {

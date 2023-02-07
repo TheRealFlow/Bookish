@@ -57,6 +57,19 @@ public class AppUserService {
         return appUser;
     }
 
+    public AppUser findUserById (String id) {
+        Optional<AppUser> appUser = appUserRepository.findAppUserById(id);
+        if (appUser.isPresent()) {
+            return appUser.get();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public AppUser update (AppUser appUser) {
+        return appUserRepository.save(appUser);
+    }
+
     public AppUser getAuthenticatedUser () {
         return findByUsernameWithoutPassword(
                 SecurityContextHolder.getContext().getAuthentication().getName()
