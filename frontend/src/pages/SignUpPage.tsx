@@ -2,6 +2,7 @@ import React, {FormEvent, useCallback, useState} from "react";
 import axios from "axios";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {Box, Button, Container, TextField, Typography} from "@mui/material";
+import {toast} from "react-toastify";
 
 export default function SignUpPage () {
     const [credentials, setCredentials] = useState({
@@ -32,11 +33,24 @@ export default function SignUpPage () {
             try {
                 await axios.post("/user", credentials);
                 navigate("/login" + location.search);
+                toast.success("Successfully signed up",
+                    {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                    })
             } catch (e) {
-                setErrors((errors) => [
-                    ...errors,
-                    "Invalid user data"
-                ]);
+                toast.error("Username already exists",
+                    {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                    });
+                setErrors((errors) => [...errors]);
             }
         },
         [credentials, navigate, location]
