@@ -12,7 +12,7 @@ type DetailPageProps = {
     updateBook: (updateBook: Book) => void;
 }
 
-export default function DetailPage(props: DetailPageProps) {
+export default function BookDetailPage(props: DetailPageProps) {
     const navigate = useNavigate();
     const {id} = useParams<{id: string}>();
     const {bookDetails} = useBookDetails(id);
@@ -37,7 +37,7 @@ export default function DetailPage(props: DetailPageProps) {
 
     return (
         <>
-        <NavBar/>
+        <NavBar />
         <Container sx={{maxWidth: 375, display: "flex", flexDirection: "column", justifyContent: "center"}}>
             <Paper elevation={3}>
                     <Typography variant={"h5"}>{bookDetails?.title}</Typography>

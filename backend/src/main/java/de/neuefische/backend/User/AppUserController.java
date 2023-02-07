@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -30,6 +31,16 @@ public class AppUserController {
         return appUserService.findByUsernameWithoutPassword(
                 SecurityContextHolder.getContext().getAuthentication().getName()
         );
+    }
+
+    @GetMapping()
+    public List<AppUser> getAll() {
+        return appUserService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public AppUser getUserById(@PathVariable String id) {
+        return appUserService.getUserById(id);
     }
 
     @GetMapping("/logout")

@@ -46,7 +46,7 @@ export default function BooksPage(props: HomePageProps) {
 
     return (
         <>
-        <NavBar/>
+        <NavBar />
         <Container>
 
             <Typography variant={"h3"}>Book List</Typography>

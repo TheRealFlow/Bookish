@@ -10,7 +10,7 @@ export default function HomePage () {
 
     return (
         <>
-            <NavBar/>
+            <NavBar />
             <Container sx={{my: 8, display: "flex", flexDirection: "column", alignItems: "center"}}>
 
                 <Typography sx={{my: 2}} variant={"h5"}>Willkommen bei Bookish</Typography>

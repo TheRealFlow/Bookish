@@ -7,12 +7,14 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import useBooks from "./hooks/useBooks";
-import DetailPage from "./pages/DetailPage";
+import BookDetailPage from "./pages/BookDetailPage";
 import SearchBooks from "./pages/SearchBooks";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import BooksPage from "./pages/BooksPage";
 import ProfilePage from "./pages/ProfilPage";
+import SearchUser from "./pages/SearchUser";
+import UserDetail from "./pages/UserDetailsPage";
 
 
 function App() {
@@ -49,7 +51,7 @@ function App() {
             }/>
               <Route path="/detail/:id" element={
                   <Auth roles={["USER", "ADMIN"]}>
-                      <DetailPage deleteBook={deleteBook} updateBook={updateBook} />
+                      <BookDetailPage deleteBook={deleteBook} updateBook={updateBook} />
                   </Auth>
               }/>
               <Route path="/search" element={
@@ -60,6 +62,16 @@ function App() {
               <Route path="/profile" element={
                   <Auth roles={["USER", "ADMIN"]}>
                       <ProfilePage />
+                  </Auth>
+              }/>
+              <Route path="/friends" element={
+                  <Auth roles={["USER", "ADMIN"]}>
+                      <SearchUser />
+                  </Auth>
+              }/>
+              <Route path="/friends/:id" element={
+                  <Auth roles={["USER", "ADMIN"]}>
+                      <UserDetail />
                   </Auth>
               }/>
           </Routes>

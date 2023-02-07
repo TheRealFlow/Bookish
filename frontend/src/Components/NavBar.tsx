@@ -12,7 +12,6 @@ import React, {useState} from "react";
 import {Link} from "@mui/material";
 import Logout from "./Logout";
 
-
 export default function NavBar() {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -97,7 +96,7 @@ export default function NavBar() {
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar src={"/images/63e0feb2023b396d9dde3f97"} />
+                                    <Avatar src={""} />
                                 </IconButton>
                             </Tooltip>
                             <Menu

@@ -7,6 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -76,6 +78,15 @@ public class AppUserService {
         ).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.FORBIDDEN)
         );
+    }
+
+    public List<AppUser> getAll() {
+        return appUserRepository.findAll();
+    }
+
+    public AppUser getUserById(String id) {
+        return appUserRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("User with the ID: " + id + " not found"));
     }
 
 }

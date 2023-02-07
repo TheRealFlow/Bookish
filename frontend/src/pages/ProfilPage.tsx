@@ -8,7 +8,7 @@ import NavBar from "../Components/NavBar";
 
 export default function ProfilePage() {
     const [file, setFile] = React.useState<File | null>(null);
-    const [imgPreview, setImgPreview] = React.useState<string | null>(null);
+    /*const [imgPreview, setImgPreview] = React.useState<string | null>(null);*/
     const fileInputRef = React.useRef<HTMLInputElement>(null);
 
     return (
@@ -16,7 +16,11 @@ export default function ProfilePage() {
             <NavBar/>
             <Typography variant={"h4"} sx={{my: 1.5}}>My Profile</Typography>
 
-                {imgPreview === null ?
+            <Box sx={{width: "200px", height: "200px", borderRadius: "50%", backgroundColor: "#7D93A6", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+                <img src={""} alt={"preview"}/>
+            </Box>
+
+                {/*{imgPreview === null ?
                     <Box sx={{width: "200px", height: "200px", borderRadius: "50%", backgroundColor: "#7D93A6", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
                         <Button variant={"contained"} endIcon={<PhotoCamera/>} onClick={() => {
                             fileInputRef.current?.click();
@@ -27,7 +31,7 @@ export default function ProfilePage() {
                         src={imgPreview}
                         alt={"preview"}
                     />
-                }
+                }*/}
 
             <form onSubmit={async (e) => {
                 e.preventDefault();
@@ -58,13 +62,13 @@ export default function ProfilePage() {
                                 pauseOnHover: true,
                             })
                             setFile(null);
-                            setImgPreview(null);
+                            /*setImgPreview(null);*/
                             return;
                         }
                         setFile(e.target.files[0]);
                         const reader = new FileReader();
                         reader.addEventListener("load", () => {
-                            setImgPreview(reader.result as string);
+                            /*setImgPreview(reader.result as string);*/
                         }, false);
                         if (file) {
                             reader.readAsDataURL(file);
@@ -74,9 +78,9 @@ export default function ProfilePage() {
                 />
 
                 <Paper elevation={3} sx={{m: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 350}}>
-                    <TextField variant={"standard"} label={"Change Username"} sx={{m: 1}}/>
+                    {/*<TextField variant={"standard"} label={"Change Username"} sx={{m: 1}}/>
                     <TextField variant={"standard"} label={"New Password"} sx={{m: 1}}/>
-                    <TextField variant={"standard"} label={"Confirm Password"} sx={{m: 1}}/>
+                    <TextField variant={"standard"} label={"Confirm Password"} sx={{m: 1}}/>*/}
 
                     <Button sx={{m: 2.5}} variant={"contained"} type={"submit"}>Save Changes</Button>
                 </Paper>
