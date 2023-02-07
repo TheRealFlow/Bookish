@@ -67,7 +67,7 @@ export default function NavBar() {
                                 }}
                             >
                                 <MenuItem onClick={handleCloseNavMenu}>
-                                    <Link href='/mypage'>My Book</Link>
+                                    <Link href='/mybooks'>My Book</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleCloseNavMenu}>
                                     <Link href='/bookclubs'>Bookclubs</Link>
@@ -97,7 +97,7 @@ export default function NavBar() {
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                    <Avatar src={"/images/63e0feb2023b396d9dde3f97"} />
                                 </IconButton>
                             </Tooltip>
                             <Menu

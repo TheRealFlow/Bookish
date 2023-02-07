@@ -16,7 +16,7 @@ public class AppUserService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     public AppUser create (AppUser appUser) {
-        Optional<AppUser> existingAppUser = findByUsername(
+        Optional<AppUser> existingAppUser = appUserRepository.findByUsername(
                 appUser.getUsername()
         );
 
@@ -55,6 +55,19 @@ public class AppUserService {
         Optional<AppUser> appUser = appUserRepository.findByUsername(username);
         appUser.ifPresent(user -> user.setPassword(""));
         return appUser;
+    }
+
+    public AppUser findUserById (String id) {
+        Optional<AppUser> appUser = appUserRepository.findAppUserById(id);
+        if (appUser.isPresent()) {
+            return appUser.get();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public AppUser update (AppUser appUser) {
+        return appUserRepository.save(appUser);
     }
 
     public AppUser getAuthenticatedUser () {

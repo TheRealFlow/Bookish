@@ -26,11 +26,11 @@ export default function DetailPage(props: DetailPageProps) {
     }
     const handleDelete = (id: string) => {
         props.deleteBook(id);
-        navigate("/mypage");
+        navigate("/mybooks");
     }
     const handleUpdate = (book: Book) => {
         props.updateBook(book);
-          navigate("/mypage");
+          navigate("/mybooks");
     }
 
 
@@ -67,7 +67,7 @@ export default function DetailPage(props: DetailPageProps) {
                         </DialogActions>
                     </Dialog>
 
-                    <Button onClick={() => navigate("/mypage")} sx={{my: 5, mx: 2, px: 2, py: 1, bgcolor: grey[500]}} variant={"contained"}>Back</Button>
+                    <Button onClick={() => navigate("/mybooks")} sx={{my: 5, mx: 2, px: 2, py: 1, bgcolor: grey[500]}} variant={"contained"}>Back</Button>
                 </Box>
             </Paper>
         </Container>
