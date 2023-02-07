@@ -1,10 +1,11 @@
-package de.neuefische.backend.Image;
+package de.neuefische.backend.File;
 
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import de.neuefische.backend.User.AppUser;
 import de.neuefische.backend.User.AppUserService;
 import lombok.RequiredArgsConstructor;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -47,6 +49,22 @@ public class FileService {
 
     public GridFsResource getResource(String id) {
         return gridFsTemplate.getResource(getFile(id));
+    }
+
+    public FileMetadata getFileMetadata(String id) {
+
+        GridFSFile gridFSFile = getFile(id);
+        Document metadata = Optional.ofNullable(
+                        gridFSFile.getMetadata())
+                .orElse(new Document(Map.of("_contentType", "", "createdBy", "")));
+
+        return new FileMetadata(
+                id,
+                gridFSFile.getFilename(),
+                metadata.getString("_contentType"),
+                gridFSFile.getLength(),
+                metadata.getString("createdBy")
+        );
     }
 
     public GridFSFile getFile(String id) {

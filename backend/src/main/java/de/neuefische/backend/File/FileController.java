@@ -1,4 +1,4 @@
-package de.neuefische.backend.Image;
+package de.neuefische.backend.File;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -27,11 +27,16 @@ public class FileController {
     public ResponseEntity<InputStreamResource> getFile (
             @PathVariable String id
     ) throws IOException {
-        GridFsResource gridFsResource = fileService.getResource(id);
+        GridFsResource gridFsResource = this.fileService.getResource(id);
 
         return ResponseEntity.ok()
                 .contentType(MediaType.valueOf(gridFsResource.getContentType()))
                 .body(new InputStreamResource(gridFsResource.getInputStream()));
+    }
+
+    @GetMapping("/{id}/metadata")
+    public FileMetadata getFileMetadata(@PathVariable String id) {
+        return this.fileService.getFileMetadata(id);
     }
 
     @DeleteMapping("/{id}")

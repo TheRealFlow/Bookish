@@ -1,4 +1,4 @@
-package de.neuefische.backend.Image;
+package de.neuefische.backend.File;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
