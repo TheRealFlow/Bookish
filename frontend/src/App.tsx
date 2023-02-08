@@ -13,8 +13,8 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import BooksPage from "./pages/BooksPage";
 import ProfilePage from "./pages/ProfilPage";
-import SearchUser from "./pages/SearchUser";
 import UserDetail from "./pages/UserDetailsPage";
+import FriendsPage from "./pages/FriendsPage";
 
 
 function App() {
@@ -66,10 +66,10 @@ function App() {
               }/>
               <Route path="/friends" element={
                   <Auth roles={["USER", "ADMIN"]}>
-                      <SearchUser />
+                      <FriendsPage />
                   </Auth>
               }/>
-              <Route path="/friends/:id" element={
+              <Route path="/user/:id" element={
                   <Auth roles={["USER", "ADMIN"]}>
                       <UserDetail />
                   </Auth>

@@ -18,7 +18,6 @@ export default function AddNewBook(props: AddNewBookProps) {
     const [genre, setGenre] = useState("");
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
 
         const newBook: Book = {
             createdBy: "",

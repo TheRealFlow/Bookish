@@ -14,7 +14,7 @@ export default function UserCard({id, username, imageId}: User) {
                 sx={{width: 56, height: 56}}
             />
             <Typography variant={"h6"}>{username}</Typography>
-            <Button variant={"outlined"} onClick={() => navigate(`/friends/${id}`)}>visit profile</Button>
+            <Button variant={"outlined"} onClick={() => navigate(`/user/${id}`)}>visit profile</Button>
         </Paper>
     )
 }
