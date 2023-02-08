@@ -1,12 +1,14 @@
-import {Box, Paper, Typography} from "@mui/material";
+import {Box, Button, Paper, Typography} from "@mui/material";
 import useUserDetails from "../hooks/useUserDetails";
 import {useParams} from "react-router-dom";
 import NavBar from "../Components/NavBar";
 import React from "react";
+import useFriends from "../hooks/useFriends";
 
 export default function UserDetail() {
     const {id} = useParams<{id: string}>();
     const {userDetails} = useUserDetails(id);
+    const {addNewFriend} = useFriends();
 
     return (
         <>
@@ -18,6 +20,7 @@ export default function UserDetail() {
 
                 <Paper elevation={3} sx={{m: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 350}}>
                     <Typography variant={"h6"} sx={{my: 1.5}}>Platzhalter für User Infos</Typography>
+                    <Button variant={"contained"} sx={{my: 1.5}} onClick={() => addNewFriend(userDetails as any)}>Add Friend</Button>
                 </Paper>
 
             </Box>
