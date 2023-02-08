@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 export default function useAuth () {
-    const [user, setUser] = useState<{username: string, role: string}|null>(null);
+    const [user, setUser] = useState<{username: string, role: string, imageId: string, bookCount: number}|null>(null);
     const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {

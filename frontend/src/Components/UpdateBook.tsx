@@ -18,7 +18,6 @@ export default function UpdateBook(props: UpdateBookProps) {
     const [genre, setGenre] = useState(props.book.genre);
 
     const saveBook = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
 
         const updateBook: Book = {
             id: props.book.id,

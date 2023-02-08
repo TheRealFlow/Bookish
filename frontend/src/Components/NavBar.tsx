@@ -11,10 +11,12 @@ import AppBar from "@mui/material/AppBar";
 import React, {useState} from "react";
 import {Link} from "@mui/material";
 import Logout from "./Logout";
+import useAuth from "../hooks/useAuth";
 
 export default function NavBar() {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+    const {user} = useAuth();
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -96,7 +98,7 @@ export default function NavBar() {
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar src={""} />
+                                    <Avatar src={"/images/"+user?.imageId} />
                                 </IconButton>
                             </Tooltip>
                             <Menu
