@@ -16,7 +16,7 @@ export default function ChangeImage() {
             <Typography variant={"h5"} sx={{my: 2.5}}>Change Image</Typography>
 
             {imgPreview === null ?
-                <Box sx={{width: "200px", height: "200px", borderRadius: "50%", border: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+                <Box sx={{mx: 3, width: "200px", height: "200px", borderRadius: "50%", border: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
                     <Button variant={"outlined"} endIcon={<PhotoCamera/>} onClick={() => {
                         fileInputRef.current?.click();
                     }}> SELECT IMAGE</Button>
