@@ -8,7 +8,7 @@ import AddNewBookClub from "../Components/AddNewBookClub";
 export default function BookClubsPage() {
     const [showAddForm, setShowAddForm] = useState(false);
     const {bookClubs} = useBookClubs();
-    /*const navigate = useNavigate();*/
+    const navigate = useNavigate();
 
     const handleShowAddForm = () => {
         setShowAddForm(true);
@@ -38,7 +38,7 @@ export default function BookClubsPage() {
                         <Paper elevation={6} key={bookClub.id} sx={{my: 1, p: 1, width: 300}}>
                             <Typography variant={"h6"} sx={{mx: 1.5}}>{bookClub.name}</Typography>
                             <Typography variant={"h6"} sx={{mx: 1.5}}>{bookClub.description}</Typography>
-                            {/*<Button onClick={() => navigate(`/user/${friend.id}`)} variant={"outlined"} sx={{mx: 1.5}}>Profile</Button>*/}
+                            <Button onClick={() => navigate(`/bookclubs/${bookClub.id}`)} variant={"outlined"} sx={{mx: 1.5}}>Show Club</Button>
                         </Paper>
                     ))}
                 </Paper>

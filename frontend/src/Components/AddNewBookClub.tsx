@@ -5,6 +5,7 @@ import {Box, Button, TextField} from "@mui/material";
 
 export default function AddNewBookClub() {
     const {addNewBookClub} = useBookClubs();
+    const [owner, setOwner] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
 
@@ -12,6 +13,7 @@ export default function AddNewBookClub() {
 
         const newBookClub: BookClub = {
             createdBy: "",
+            owner: owner,
             name: name,
             description: description,
         }
@@ -21,8 +23,9 @@ export default function AddNewBookClub() {
     return (
         <form onSubmit={handleSubmit}>
             <Box sx={{p: 2, display: "flex", flexDirection: "column", width: 300}}>
-                <TextField autoFocus margin={"dense"} name={"name"} label={"name"} type={"text"} variant={"standard"} onChange={(e) => setName(e.target.value)} />
-                <TextField margin={"dense"} name={"description"} label={"description"} type={"text"} variant={"standard"} onChange={(e) => setDescription(e.target.value)}/>
+                <TextField autoFocus margin={"dense"} name={"owner"} label={"Club-Owner"} type={"text"} variant={"standard"} onChange={(e) => setOwner(e.target.value)} />
+                <TextField autoFocus margin={"dense"} name={"name"} label={"Name"} type={"text"} variant={"standard"} onChange={(e) => setName(e.target.value)} />
+                <TextField margin={"dense"} name={"description"} label={"Description"} type={"text"} variant={"standard"} onChange={(e) => setDescription(e.target.value)}/>
                 <Button sx={{marginTop: 5}} type={"submit"} variant={"contained"}>Create BookClub</Button>
             </Box>
         </form>

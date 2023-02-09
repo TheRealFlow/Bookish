@@ -16,6 +16,7 @@ import ProfilePage from "./pages/ProfilPage";
 import UserDetail from "./pages/UserDetailsPage";
 import FriendsPage from "./pages/FriendsPage";
 import BookClubsPage from "./pages/BookClubsPage";
+import BookClubDetailPage from "./pages/BookClubDetailPage";
 
 
 function App() {
@@ -78,6 +79,11 @@ function App() {
               <Route path="/bookclubs" element={
                   <Auth roles={["USER", "ADMIN"]}>
                       <BookClubsPage />
+                  </Auth>
+              }/>
+              <Route path="/bookclubs/:id" element={
+                  <Auth roles={["USER", "ADMIN"]}>
+                      <BookClubDetailPage />
                   </Auth>
               }/>
           </Routes>

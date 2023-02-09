@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class BookClub {
     private String id;
     private String name;
+    private String owner;
     private String description;
     private String createdBy;
     private String[] members;
