@@ -8,11 +8,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import ChangeImage from "../Components/ChangeImage";
 import useBooks from "../hooks/useBooks";
 import useFriends from "../hooks/useFriends";
+import useBookClubs from "../hooks/useBookClubs";
 
 export default function ProfilePage() {
     const {books} = useBooks();
     const {user} = useAuth();
     const {friends} = useFriends();
+    const {bookClubs} = useBookClubs();
     const [showEditForm, setShowEditForm] = useState(false);
 
     const handleShowEditForm = () => {
@@ -40,10 +42,11 @@ export default function ProfilePage() {
             </Dialog>
 
             <Paper elevation={3} sx={{m: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 350}}>
-                <Typography variant={"h6"} sx={{my: 1}}>Username: {user?.username}</Typography>
-                <Typography variant={"h6"} sx={{my: 1}}>Friends: {friends.length}</Typography>
-                <Typography variant={"h6"} sx={{my: 1}}>Books: {books.length}</Typography>
-                <Typography variant={"h6"} sx={{my: 1}}>Genres: {books.map(book => book.genre).join(", ")}</Typography>
+                <Typography variant={"h6"} sx={{my: .5}}>Username: {user?.username}</Typography>
+                <Typography variant={"h6"} sx={{my: .5}}>Friends: {friends.length}</Typography>
+                <Typography variant={"h6"} sx={{my: .5}}>Books: {books.length}</Typography>
+                <Typography variant={"h6"} sx={{my: .5}}>Book-Clubs: {bookClubs.length}</Typography>
+                <Typography variant={"h6"} sx={{my: .5}}>Genres: {books.map(book => book.genre).join(", ")}</Typography>
             </Paper>
 
         </Box>
