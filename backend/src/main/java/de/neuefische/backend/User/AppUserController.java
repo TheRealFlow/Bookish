@@ -47,4 +47,9 @@ public class AppUserController {
     public void logout(HttpSession httpSession) {
         httpSession.invalidate();
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        appUserService.delete(id);
+    }
 }

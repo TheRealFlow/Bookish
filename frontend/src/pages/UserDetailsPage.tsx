@@ -20,8 +20,8 @@ export default function UserDetail() {
 
                 <Paper elevation={3} sx={{m: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 350}}>
                     <Typography variant={"h6"} sx={{my: 1.5}}>User Informations</Typography>
-                    <Typography variant={"h6"} sx={{my: 1}}>Friends: {userDetails?.friends?.length}</Typography>
-                    <Typography variant={"h6"} sx={{my: 1}}>Books: {userDetails?.books?.length}</Typography>
+                    <Typography variant={"h6"} sx={{my: 1}}>Friends: </Typography>
+                    <Typography variant={"h6"} sx={{my: 1}}>Books: </Typography>
                     <Button variant={"contained"} sx={{my: 1.5}} onClick={() => addNewFriend(userDetails as any)}>Add as Friend</Button>
                 </Paper>
 

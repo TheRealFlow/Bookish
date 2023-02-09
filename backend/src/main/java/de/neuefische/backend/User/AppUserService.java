@@ -89,4 +89,7 @@ public class AppUserService {
                 .orElseThrow(() -> new NoSuchElementException("User with the ID: " + id + " not found"));
     }
 
+    public void delete(String id) {
+        appUserRepository.deleteById(id);
+    }
 }
