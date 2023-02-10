@@ -8,14 +8,34 @@ import {green, red} from "@mui/material/colors";
 import {useNavigate} from "react-router-dom";
 import UpdateBookClub from "../Components/UpdateBookClub";
 import {BookClub} from "../Types/BookClub";
+import SearchBooksForClub from "../Components/SearchBooksForClub";
+import useClubBooks from "../hooks/useClubBooks";
+import useClubMembers from "../hooks/useClubMembers";
+import SearchFriendsForClub from "../Components/SearchFriendsForClub";
 
 export default function BookClubDetailPage() {
     const {id} = useParams<{id: string}>();
     const {deleteBookClub, updateBookClub} = useBookClubs();
     const {bookClubDetails} = useBookClubDetails(id);
+    const {clubBooks} = useClubBooks();
+    const {clubMembers} = useClubMembers()
     const [showEditForm, setShowEditForm] = useState(false);
+    const [showSearchBooks, setShowSearchBooks] = useState(false);
+    const [showSearchFriends, setShowSearchFriends] = useState(false);
     const navigate = useNavigate();
 
+    const handleShowSearchBooks = () => {
+        setShowSearchBooks(true);
+    }
+    const handleCloseSearchBooks = () => {
+        setShowSearchBooks(false);
+    }
+    const handleShowSearchFriends = () => {
+        setShowSearchFriends(true);
+    }
+    const handleCloseSearchFriends = () => {
+        setShowSearchFriends(false);
+    }
     const handleShowEditForm = () => {
         setShowEditForm(true);
     }
@@ -42,20 +62,65 @@ export default function BookClubDetailPage() {
                     <Typography variant={"h6"} sx={{my: 1}}>Description: {bookClubDetails?.description}</Typography>
                 </Paper>
 
-                <Button onClick={handleShowEditForm} sx={{my: 5, mx: 2, px: 2, py: 1, bgcolor: green[500]}} variant={"contained"}>Edit Club</Button>
-                <Dialog open={showEditForm} onClose={handleCloseEditForm}>
-                    <DialogTitle>Edit this Club</DialogTitle>
-                    {showEditForm && (
-                        // @ts-ignore
-                        <UpdateBookClub bookClub={bookClubDetails} updateBookClub={handleUpdate}/>
-                    )}
-                    <DialogActions>
-                        <Button onClick={handleCloseEditForm} variant={"outlined"}>Close</Button>
-                    </DialogActions>
-                </Dialog>
+                <Box sx={{m: 1, display: "flex"}}>
+                    <Button onClick={handleShowSearchBooks} variant={"outlined"}>Add Book</Button>
+                    <Dialog open={showSearchBooks} onClose={handleCloseSearchBooks}>
+                        <DialogTitle>Add one of your Books</DialogTitle>
+                        {showSearchBooks && (
+                            <SearchBooksForClub/>
+                        )}
+                        <DialogActions>
+                            <Button onClick={handleCloseSearchBooks} variant={"outlined"}>Close</Button>
+                        </DialogActions>
+                    </Dialog>
+                </Box>
 
-                <Button onClick={() => id ? handleDelete(id) : null} variant={"contained"} sx={{mx: 1.5, bgcolor: red[500]}}>Delete Club</Button>
-                <Button variant={"outlined"} sx={{my: 1.5}} onClick={() => navigate("/bookclubs")}>Back</Button>
+                <Box sx={{m: 1, display: "flex"}}>
+                    <Button onClick={handleShowSearchFriends} variant={"outlined"}>Add Member</Button>
+                    <Dialog open={showSearchFriends} onClose={handleCloseSearchFriends}>
+                        <DialogTitle>Add one of your Friends</DialogTitle>
+                        {showSearchFriends && (
+                            <SearchFriendsForClub/>
+                        )}
+                        <DialogActions>
+                            <Button onClick={handleCloseSearchFriends} variant={"outlined"}>Close</Button>
+                        </DialogActions>
+                    </Dialog>
+                </Box>
+
+                <Paper elevation={3} sx={{m: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 350}}>
+                    <Typography variant={"h6"} sx={{my: 1}}>Books</Typography>
+                    {clubBooks.map((clubBook) => (
+                        <>
+                            <Typography>- {clubBook.title}</Typography>
+                        </>
+                    ))}
+                </Paper>
+
+                <Paper elevation={3} sx={{m: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 350}}>
+                    <Typography variant={"h6"} sx={{my: 1}}>Member</Typography>
+                    {clubMembers.map((clubMember) => (
+                        <Typography>- {clubMember.username}</Typography>
+                    ))}
+                </Paper>
+
+                <Box sx={{m: 1, display: "flex"}}>
+                    <Button onClick={handleShowEditForm} sx={{bgcolor: green[500]}} variant={"contained"}>Edit Club</Button>
+                    <Dialog open={showEditForm} onClose={handleCloseEditForm}>
+                        <DialogTitle>Edit this Club</DialogTitle>
+                            {showEditForm && (
+                                // @ts-ignore
+                                <UpdateBookClub bookClub={bookClubDetails} updateBookClub={handleUpdate}/>
+                            )}
+                        <DialogActions>
+                                <Button onClick={handleCloseEditForm} variant={"outlined"}>Close</Button>
+                        </DialogActions>
+                    </Dialog>
+
+                    <Button onClick={() => id ? handleDelete(id) : null} variant={"contained"} sx={{bgcolor: red[500]}}>Delete Club</Button>
+                </Box>
+
+                <Button variant={"outlined"} onClick={() => navigate("/bookclubs")}>Back</Button>
 
             </Box>
         </>
