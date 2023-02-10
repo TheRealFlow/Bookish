@@ -17,6 +17,7 @@ import UserDetail from "./pages/UserDetailsPage";
 import FriendsPage from "./pages/FriendsPage";
 import BookClubsPage from "./pages/BookClubsPage";
 import BookClubDetailPage from "./pages/BookClubDetailPage";
+import FriendDetailPage from "./pages/FriendDetailPage";
 
 
 function App() {
@@ -69,6 +70,11 @@ function App() {
               <Route path="/friends" element={
                   <Auth roles={["USER", "ADMIN"]}>
                       <FriendsPage />
+                  </Auth>
+              }/>
+              <Route path="/friends/:id" element={
+                  <Auth roles={["USER", "ADMIN"]}>
+                      <FriendDetailPage />
                   </Auth>
               }/>
               <Route path="/user/:id" element={
