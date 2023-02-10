@@ -1,11 +1,10 @@
 import useBookClubDetails from "../hooks/useBookClubDetails";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import useBookClubs from "../hooks/useBookClubs";
 import NavBar from "../Components/NavBar";
 import {Box, Button, Dialog, DialogActions, DialogTitle, Paper, Typography} from "@mui/material";
 import {green, red} from "@mui/material/colors";
-import {useNavigate} from "react-router-dom";
 import UpdateBookClub from "../Components/UpdateBookClub";
 import {BookClub} from "../Types/BookClub";
 import SearchBooksForClub from "../Components/SearchBooksForClub";
