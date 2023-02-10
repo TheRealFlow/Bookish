@@ -11,21 +11,21 @@ export default function useClubMembers() {
     }, []);
 
     const getAllClubMembers = () => {
-        axios.get("/clubmember")
+        axios.get("/api/club-member")
             .then(response => response.data)
             .then(clubMembers => setClubMembers(clubMembers))
             .catch((error) => toast.error(error.message));
     }
 
     const addNewClubMember = (clubMember: ClubMember) => {
-        axios.post("/clubmember", clubMember)
+        axios.post("/api/club-member", clubMember)
             .then(() => toast.success("Club member added successfully!"))
             .then(() => getAllClubMembers())
             .catch((error) => toast.error(error.message));
     }
 
     const deleteClubMember = (id: string) => {
-        axios.delete(`/clubmember/${id}`)
+        axios.delete(`/api/club-member/${id}`)
             .then(() => toast.success("Club member deleted successfully!"))
             .then(() => getAllClubMembers())
             .catch((error) => toast.error(error.message));

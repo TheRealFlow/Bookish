@@ -11,21 +11,21 @@ export default function useFriends() {
     }, []);
 
     const getAllFriends = () => {
-        axios.get("/friends")
+        axios.get("/api/friends")
             .then(response => response.data)
             .then(friends => setFriends(friends))
             .catch((error) => toast.error(error.message));
     }
 
     const addNewFriend = (friend: Friend) => {
-        axios.post("/friends", friend)
+        axios.post("/api/friends", friend)
             .then(() => toast.success("Friend added successfully!"))
             .then(() => getAllFriends())
             .catch((error) => toast.error(error.message));
     }
 
     const deleteFriend = (id: string) => {
-        axios.delete(`/friends/${id}`)
+        axios.delete(`/api/friends/${id}`)
             .then(() => toast.success("Friend deleted successfully!"))
             .then(() => getAllFriends())
             .catch((error) => toast.error(error.message));

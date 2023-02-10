@@ -37,7 +37,7 @@ export default function FriendsPage() {
                     <Typography variant={"h6"} sx={{my: 1.5}}>My Friends</Typography>
                     {friends.map(friend => (
                         <Paper elevation={6} key={friend.id} sx={{my: 1, p: 1, width: 300}}>
-                            <img src={"/images/"+friend.imageId} alt={"preview"} style={{margin: 1.5, width: "75px", height: "75px", borderRadius: "50%"}}/>
+                            <img src={"/api/images/"+friend.imageId} alt={"preview"} style={{margin: 1.5, width: "75px", height: "75px", borderRadius: "50%"}}/>
                             <Typography variant={"h6"} sx={{mx: 1.5}}>{friend.username}</Typography>
                             <Button onClick={() => navigate(`/friends/${friend.id}`)} variant={"outlined"} sx={{mx: 1.5}}>Profile</Button>
                             <Button onClick={() => deleteFriend(friend.id)} variant={"contained"} sx={{mx: 1.5, bgcolor: red[500]}}>Delete</Button>

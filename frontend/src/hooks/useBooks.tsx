@@ -11,28 +11,28 @@ export default function useBooks() {
     }, []);
 
     const getAllBooks = () => {
-        axios.get("/books")
+        axios.get("/api/books")
             .then(response => response.data)
             .then(books => setBooks(books))
             .catch((error) => toast.error(error.message));
     }
 
     const addNewBook = (book: Book) => {
-        axios.post("/books", book)
+        axios.post("/api/books", book)
             .then(() => toast.success("Book added successfully!"))
             .then(() => getAllBooks())
             .catch((error) => toast.error(error.message));
     }
 
     const updateBook = (book: Book) => {
-        axios.post("/books", book)
+        axios.post("/api/books", book)
             .then(() => toast.success("Book updated successfully!"))
             .then(() => getAllBooks())
             .catch((error) => toast.error(error.message));
     }
 
     const deleteBook = (id: string) => {
-        axios.delete(`/books/${id}`)
+        axios.delete(`/api/books/${id}`)
             .then(() => toast.success("Book deleted successfully!"))
             .then(() => getAllBooks())
             .catch((error) => toast.error(error.message));

@@ -31,7 +31,7 @@ export default function SearchUser() {
 
             <div>
                 {users.filter((user => user.username.toLowerCase().includes(search))).map(user => (
-                    <UserCard key={user.id} id={user.id} username={user.username} imageId={"/images/"+user.imageId}/>
+                    <UserCard key={user.id} id={user.id} username={user.username} imageId={"/api/images/"+user.imageId}/>
                 ))}
             </div>
 

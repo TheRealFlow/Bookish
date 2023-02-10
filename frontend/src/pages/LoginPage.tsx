@@ -36,7 +36,7 @@ export default function LoginPage () {
             setErrors([]);
 
             try {
-                await axios.post("/user/login", null, {
+                await axios.post("/api/user/login", null, {
                     headers: {
                         "Authorization": "Basic " + window.btoa(`${credentials.username}:${credentials.password}`)
                     }

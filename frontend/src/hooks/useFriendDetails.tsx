@@ -7,7 +7,7 @@ export default function useFriendDetails(id: string|undefined) {
 
     useEffect(() => {
         (async () => {
-            const friend = await axios.get(`/friends/${id}`);
+            const friend = await axios.get(`/api/friends/${id}`);
             setFriendDetails(friend.data);
         })();
     }, [id]);

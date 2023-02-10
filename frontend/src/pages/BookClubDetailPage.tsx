@@ -91,16 +91,14 @@ export default function BookClubDetailPage() {
                 <Paper elevation={3} sx={{m: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 350}}>
                     <Typography variant={"h6"} sx={{my: 1}}>Books</Typography>
                     {clubBooks.map((clubBook) => (
-                        <>
-                            <Typography>- {clubBook.title}</Typography>
-                        </>
+                            <Typography key={clubBook.id}>- {clubBook.title}</Typography>
                     ))}
                 </Paper>
 
                 <Paper elevation={3} sx={{m: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 350}}>
                     <Typography variant={"h6"} sx={{my: 1}}>Member</Typography>
                     {clubMembers.map((clubMember) => (
-                        <Typography>- {clubMember.username}</Typography>
+                        <Typography key={clubMember.id}>- {clubMember.username}</Typography>
                     ))}
                 </Paper>
 

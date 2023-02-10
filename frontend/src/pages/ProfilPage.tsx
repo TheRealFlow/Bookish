@@ -29,7 +29,7 @@ export default function ProfilePage() {
             <NavBar/>
             <Typography variant={"h4"} sx={{my: 1.5}}>My Profile</Typography>
 
-            <img src={"/images/"+user?.imageId} alt={"preview"} style={{width: "200px", height: "200px", borderRadius: "50%"}}/>
+            <img src={"/api/images/"+user?.imageId} alt={"preview"} style={{width: "200px", height: "200px", borderRadius: "50%"}}/>
 
             <Button onClick={handleShowEditForm} sx={{m: 2, bgcolor: green[500]}} variant={"contained"} endIcon={<EditIcon/>}>Change Image</Button>
             <Dialog open={showEditForm} onClose={handleCloseEditForm}>

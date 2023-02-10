@@ -33,7 +33,7 @@ export default function ChangeImage() {
                     const formData = new FormData();
                     formData.append("file", file);
 
-                    axios.post("/images", formData)
+                    axios.post("/api/images", formData)
                         .then(() => toast.success("Image uploaded successfully!"))
                         .catch((error) => toast.error(error.message));
                 }

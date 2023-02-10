@@ -11,21 +11,21 @@ export default function useClubBooks() {
     }, []);
 
     const getAllClubBooks = () => {
-        axios.get("/clubbooks")
+        axios.get("/api/club-books")
             .then(response => response.data)
             .then(clubBooks => setClubBooks(clubBooks))
             .catch((error) => toast.error(error.message));
     }
 
     const addNewClubBook = (clubBook: ClubBook) => {
-        axios.post("/clubbooks", clubBook)
+        axios.post("/api/club-books", clubBook)
             .then(() => toast.success("Club book added successfully!"))
             .then(() => getAllClubBooks())
             .catch((error) => toast.error(error.message));
     }
 
     const deleteClubBook = (id: string) => {
-        axios.delete(`/clubbooks/${id}`)
+        axios.delete(`/api/club-books/${id}`)
             .then(() => toast.success("Club book deleted successfully!"))
             .then(() => getAllClubBooks())
             .catch((error) => toast.error(error.message));

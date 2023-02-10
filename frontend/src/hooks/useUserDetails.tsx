@@ -7,7 +7,7 @@ export default function useUserDetails(id: string|undefined) {
 
     useEffect(() => {
         (async () => {
-            const user = await axios.get(`/user/${id}`);
+            const user = await axios.get(`/api/user/${id}`);
             setUserDetails(user.data);
         })();
     }, [id]);
