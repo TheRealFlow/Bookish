@@ -31,7 +31,7 @@ export default function SignUpPage () {
             setErrors([]);
 
             try {
-                await axios.post("/user", credentials);
+                await axios.post("/api/user", credentials);
                 navigate("/login" + location.search);
                 toast.success("Successfully signed up",
                     {

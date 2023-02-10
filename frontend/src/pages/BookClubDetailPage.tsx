@@ -1,11 +1,10 @@
 import useBookClubDetails from "../hooks/useBookClubDetails";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import useBookClubs from "../hooks/useBookClubs";
 import NavBar from "../Components/NavBar";
 import {Box, Button, Dialog, DialogActions, DialogTitle, Paper, Typography} from "@mui/material";
 import {green, red} from "@mui/material/colors";
-import {useNavigate} from "react-router-dom";
 import UpdateBookClub from "../Components/UpdateBookClub";
 import {BookClub} from "../Types/BookClub";
 import SearchBooksForClub from "../Components/SearchBooksForClub";
@@ -91,16 +90,14 @@ export default function BookClubDetailPage() {
                 <Paper elevation={3} sx={{m: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 350}}>
                     <Typography variant={"h6"} sx={{my: 1}}>Books</Typography>
                     {clubBooks.map((clubBook) => (
-                        <>
-                            <Typography>- {clubBook.title}</Typography>
-                        </>
+                            <Typography key={clubBook.id}>- {clubBook.title}</Typography>
                     ))}
                 </Paper>
 
                 <Paper elevation={3} sx={{m: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 350}}>
                     <Typography variant={"h6"} sx={{my: 1}}>Member</Typography>
                     {clubMembers.map((clubMember) => (
-                        <Typography>- {clubMember.username}</Typography>
+                        <Typography key={clubMember.id}>- {clubMember.username}</Typography>
                     ))}
                 </Paper>
 

@@ -7,7 +7,7 @@ export default function useBookDetails(id: string|undefined) {
 
     useEffect(() => {
         (async () => {
-            const book = await axios.get(`/books/${id}`);
+            const book = await axios.get(`/api/books/${id}`);
             setBookDetails(book.data);
         })();
     }, [id]);

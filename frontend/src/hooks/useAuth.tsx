@@ -8,7 +8,7 @@ export default function useAuth () {
     useEffect(() => {
         (async () => {
             try {
-                const user = await axios.get("/user/me");
+                const user = await axios.get("/api/user/me");
                 setUser(user.data);
             } catch (e) {
                 console.error("You are not logged in!", e);

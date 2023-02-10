@@ -7,7 +7,7 @@ export default function useBookClubDetails(id: string|undefined) {
 
     useEffect(() => {
         (async () => {
-            const bookClub = await axios.get(`/bookclubs/${id}`);
+            const bookClub = await axios.get(`/api/bookclubs/${id}`);
             setBookClubDetails(bookClub.data);
         })();
     }, [id]);

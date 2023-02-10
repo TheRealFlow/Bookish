@@ -22,8 +22,8 @@ class UserServiceTests {
     @Test
     void create_whenValidInput_thenReturnNewUser() {
 
-        AppUser userInput = new AppUser("1", "user", "password", "USER");
-        AppUser createdUser = new AppUser("1", "user", "", "USER");
+        AppUser userInput = new AppUser("1", "user", "password", "USER", "imageId");
+        AppUser createdUser = new AppUser("1", "user", "", "USER", "imageId");
         AppUserRepository repository = Mockito.mock(AppUserRepository.class);
 
         AppUserService appUserService = new AppUserService(repository, passwordEncoder);
@@ -37,8 +37,8 @@ class UserServiceTests {
     @Test
     void create_whenUserAlreadyExists_thenReturnException() {
 
-        AppUser userInput = new AppUser("1", "user", "password", "USER");
-        AppUser createdUser = new AppUser("1", "user", "", "USER");
+        AppUser userInput = new AppUser("1", "user", "password", "USER", "imageId");
+        AppUser createdUser = new AppUser("1", "user", "", "USER", "imageId");
         AppUserRepository repository = Mockito.mock(AppUserRepository.class);
 
         AppUserService appUserService = new AppUserService(repository, passwordEncoder);
@@ -55,7 +55,7 @@ class UserServiceTests {
     @Test
     void findByUsername_whenUserExists_thenReturnUser() {
 
-        AppUser user = new AppUser("1", "user", "password", "USER");
+        AppUser user = new AppUser("1", "user", "password", "USER", "imageId");
         AppUserRepository repository = Mockito.mock(AppUserRepository.class);
 
         AppUserService appUserService = new AppUserService(repository, passwordEncoder);
@@ -82,8 +82,8 @@ class UserServiceTests {
     @Test
     void findByUsernameWithoutPassword_whenUserExists_thenReturnUser() {
 
-        AppUser user = new AppUser("1", "user", "password", "USER");
-        AppUser userWithoutPassword = new AppUser("1", "user", "", "USER");
+        AppUser user = new AppUser("1", "user", "password", "USER", "imageId");
+        AppUser userWithoutPassword = new AppUser("1", "user", "", "USER", "imageId");
         AppUserRepository repository = Mockito.mock(AppUserRepository.class);
 
         AppUserService appUserService = new AppUserService(repository, passwordEncoder);

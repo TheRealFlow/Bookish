@@ -11,7 +11,7 @@ export default function useUser() {
     }, []);
 
     const getAllUsers = () => {
-        axios.get("/user")
+        axios.get("/api/user")
             .then(response => response.data)
             .then(users => setUsers(users))
             .catch((error) => toast.error(error.message));

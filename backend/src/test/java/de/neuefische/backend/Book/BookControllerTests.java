@@ -41,20 +41,20 @@ class BookControllerTests {
                 }
                 """;
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/user")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestUser))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedUser));
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/books"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/books"))
                 .andExpectAll(
                         MockMvcResultMatchers.status().isOk());
     }
 
     @Test
     void getAllBooks_whenUserIsNotLoggedIn_return401() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/books"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/books"))
                 .andExpectAll(
                         MockMvcResultMatchers.status().isUnauthorized()
                 );
@@ -79,7 +79,7 @@ class BookControllerTests {
                 }
                 """;
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/user")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestUser))
                 .andExpect(status().isOk())
@@ -101,13 +101,13 @@ class BookControllerTests {
                 }
                 """;
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/books")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/books")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBook))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedBook));
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/books/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/books/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedBook));
 
@@ -115,7 +115,7 @@ class BookControllerTests {
 
     @Test
     void getBookById_whenUserIsNotLoggedIn_Return401() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/books/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/books/1"))
                 .andExpectAll(
                         MockMvcResultMatchers.status().isUnauthorized()
                 );
@@ -140,7 +140,7 @@ class BookControllerTests {
                 }
                 """;
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/user")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestUser))
                 .andExpect(status().isOk())
@@ -162,7 +162,7 @@ class BookControllerTests {
                 }
                 """;
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/books")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/books")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBook))
                 .andExpect(status().isOk())
@@ -171,7 +171,7 @@ class BookControllerTests {
 
     @Test
     void addBook_whenUserIsNotLoggedIn_Return400() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/books"))
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/books"))
                 .andExpectAll(
                         MockMvcResultMatchers.status().isBadRequest()
                 );
@@ -196,7 +196,7 @@ class BookControllerTests {
                 }
                 """;
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/user")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestUser))
                 .andExpect(status().isOk())
@@ -218,19 +218,19 @@ class BookControllerTests {
                 }
                 """;
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/books")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/books")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBook))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedBook));
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/books/2"))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/books/2"))
                 .andExpect(status().isOk());
     }
 
     @Test
     void deleteBook_whenUserIsNotLoggedIn_Return401() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/books"))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/books"))
                 .andExpectAll(
                         MockMvcResultMatchers.status().isUnauthorized()
                 );
@@ -255,7 +255,7 @@ class BookControllerTests {
                 }
                 """;
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/user")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestUser))
                 .andExpect(status().isOk())
@@ -277,7 +277,7 @@ class BookControllerTests {
                 }
                 """;
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/books/2")
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/books/2")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBook))
                 .andExpect(status().isOk())
@@ -286,7 +286,7 @@ class BookControllerTests {
 
     @Test
     void updateBook_whenUserIsNotLoggedIn_Return401() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.put("/books"))
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/books"))
                 .andExpectAll(
                         MockMvcResultMatchers.status().isUnauthorized()
                 );
