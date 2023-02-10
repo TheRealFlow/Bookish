@@ -8,6 +8,7 @@ export default function AddNewBookClub() {
     const [owner, setOwner] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
+    const [books, setBooks] = useState("");
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 
@@ -16,6 +17,7 @@ export default function AddNewBookClub() {
             owner: owner,
             name: name,
             description: description,
+            books: books.split(",")
         }
         addNewBookClub(newBookClub);
     }
@@ -26,6 +28,7 @@ export default function AddNewBookClub() {
                 <TextField autoFocus margin={"dense"} name={"owner"} label={"Club-Owner"} type={"text"} variant={"standard"} onChange={(e) => setOwner(e.target.value)} />
                 <TextField autoFocus margin={"dense"} name={"name"} label={"Name"} type={"text"} variant={"standard"} onChange={(e) => setName(e.target.value)} />
                 <TextField margin={"dense"} name={"description"} label={"Description"} type={"text"} variant={"standard"} onChange={(e) => setDescription(e.target.value)}/>
+                <TextField margin={"dense"} name={"books"} label={"Books"} type={"text"} variant={"standard"} onChange={(e) => setBooks(e.target.value)}/>
                 <Button sx={{marginTop: 5}} type={"submit"} variant={"contained"}>Create BookClub</Button>
             </Box>
         </form>
