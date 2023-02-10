@@ -32,37 +32,4 @@ public class BookClubService {
         public void deleteBookClub(String id) {
             bookClubRepository.deleteById(id);
         }
-
-        /*public BookClub updateBookClub(String id, BookClub bookClub) {
-            BookClub bookClubToUpdate = bookClubRepository.findById(id).orElseThrow();
-            bookClubToUpdate.setName(bookClub.getName());
-            bookClubToUpdate.setDescription(bookClub.getDescription());
-            bookClubToUpdate.setMembers(bookClub.getMembers());
-            bookClubToUpdate.setBooks(bookClub.getBooks());
-            return bookClubRepository.save(bookClubToUpdate);
-        }
-
-        public BookClub addMember(String id, String member) {
-            BookClub bookClubToUpdate = bookClubRepository.findById(id).orElseThrow();
-            bookClubToUpdate.addMember(member);
-            return bookClubRepository.save(bookClubToUpdate);
-        }
-
-        public BookClub removeMember(String id, String member) {
-            BookClub bookClubToUpdate = bookClubRepository.findById(id).orElseThrow();
-            bookClubToUpdate.removeMember(member);
-            return bookClubRepository.save(bookClubToUpdate);
-        }
-
-        public BookClub addBook(String id, String book) {
-            BookClub bookClubToUpdate = bookClubRepository.findById(id).orElseThrow();
-            bookClubToUpdate.addBook(book);
-            return bookClubRepository.save(bookClubToUpdate);
-        }
-
-        public BookClub removeBook(String id, String book) {
-            BookClub bookClubToUpdate = bookClubRepository.findById(id).orElseThrow();
-            bookClubToUpdate.removeBook(book);
-            return bookClubRepository.save(bookClubToUpdate);
-        }*/
 }
