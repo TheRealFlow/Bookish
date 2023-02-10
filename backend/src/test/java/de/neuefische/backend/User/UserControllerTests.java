@@ -21,13 +21,14 @@ class UserControllerTests {
 
     @Test
     void SignUp_shouldCreateNewUser() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/user")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
                             "id": "1",
                             "username": "user",
                             "password": "password",
+                            "imageId": "imageId",
                             "role": "USER"
                         }
                         """)
@@ -38,6 +39,7 @@ class UserControllerTests {
                                     "id": "1",
                                     "username": "user",
                                     "password": "",
+                                    "imageId": "imageId",
                                     "role": "USER"
                                 }
                                 """,
@@ -47,13 +49,14 @@ class UserControllerTests {
 
     @Test
     void whenUserAlreadyExists_shouldReturnConflict() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/user")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
                             "id": "1",
                             "username": "user",
                             "password": "password",
+                            "imageId": "imageId",
                             "role": "USER"
                         }
                         """)).andExpectAll(
@@ -63,19 +66,21 @@ class UserControllerTests {
                                     "id": "1",
                                     "username": "user",
                                     "password": "",
+                                    "imageId": "imageId",
                                     "role": "USER"
                                 }
                                 """,
                         true
                 )
         );
-        mockMvc.perform(MockMvcRequestBuilders.post("/user")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
                             "id": "1",
                             "username": "user",
                             "password": "password",
+                            "imageId": "imageId",
                             "role": "USER"
                         }
                         """)).andExpectAll(
@@ -84,40 +89,40 @@ class UserControllerTests {
 
     @Test
     void login_whenUserNotExist_thenReturn401() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/user/login")).
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user/login")).
                 andExpectAll(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
     @WithMockUser(username = "user", roles = "BASIC")
     void login_whenUserExist_thenReturn200() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/user/login"))
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user/login"))
                 .andExpectAll(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
     void me_whenUserNotLoggedIn_thenReturn401() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/me")).
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/me")).
                 andExpectAll(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
     @WithMockUser(username = "user", roles = "BASIC")
     void me_whenUserLoggedIn_thenReturn200() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/me")).
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/me")).
                 andExpectAll(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
     void logout_whenUserNotLoggedInAndLogsOut_shouldReturn401() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/logout"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/logout"))
                 .andExpectAll(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
     @WithMockUser(username = "user", roles = "BASIC")
     void logout_whenUserLoggedInAndLogsOut_shouldReturn200() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/logout"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/logout"))
                 .andExpectAll(MockMvcResultMatchers.status().isOk());
     }
 
