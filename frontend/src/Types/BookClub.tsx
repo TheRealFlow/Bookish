@@ -4,4 +4,5 @@ export type BookClub = {
     owner: string;
     description: string;
     createdBy: string;
+    books: string[];
 }

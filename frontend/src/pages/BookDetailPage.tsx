@@ -3,9 +3,10 @@ import {useNavigate, useParams} from "react-router-dom";
 import useBookDetails from "../hooks/useBookDetails";
 import {Book} from "../Types/Book";
 import {Box, Button, Container, Dialog, DialogActions, DialogTitle, Paper, Typography} from "@mui/material";
-import {green, grey, red} from "@mui/material/colors";
+import {green, red} from "@mui/material/colors";
 import UpdateBook from "../Components/UpdateBook";
 import NavBar from "../Components/NavBar";
+import useClubBooks from "../hooks/useClubBooks";
 
 type DetailPageProps = {
     deleteBook: (id: string) => void;
@@ -16,6 +17,7 @@ export default function BookDetailPage(props: DetailPageProps) {
     const navigate = useNavigate();
     const {id} = useParams<{id: string}>();
     const {bookDetails} = useBookDetails(id);
+    const {addNewClubBook} = useClubBooks();
     const [showEditForm, setShowEditForm] = useState(false);
 
     const handleShowEditForm = () => {
@@ -67,7 +69,9 @@ export default function BookDetailPage(props: DetailPageProps) {
                         </DialogActions>
                     </Dialog>
 
-                    <Button onClick={() => navigate("/mybooks")} sx={{my: 5, mx: 2, px: 2, py: 1, bgcolor: grey[500]}} variant={"contained"}>Back</Button>
+                    <Button onClick={() => addNewClubBook(bookDetails as any)} sx={{my: 5, mx: 2, px: 2, py: 1}} variant={"contained"}>Add to Book-Club</Button>
+
+                    <Button variant={"outlined"} sx={{my: 1.5}} onClick={() => window.history.back()}>Back</Button>
                 </Box>
             </Paper>
         </Container>
