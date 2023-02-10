@@ -1,4 +1,4 @@
-package de.neuefische.backend.bookClub;
+package de.neuefische.backend.bookclub;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package de.neuefische.backend.clubMember;
+package de.neuefische.backend.clubmember;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package de.neuefische.backend.clubMember;
+package de.neuefische.backend.clubmember;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

@@ -1,4 +1,4 @@
-package de.neuefische.backend.bookClub;
+package de.neuefische.backend.bookclub;
 
 import de.neuefische.backend.user.AppUserService;
 import lombok.RequiredArgsConstructor;

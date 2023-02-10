@@ -1,4 +1,4 @@
-package de.neuefische.backend.bookClub;
+package de.neuefische.backend.bookclub;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

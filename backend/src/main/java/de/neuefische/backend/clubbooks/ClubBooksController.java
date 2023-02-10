@@ -1,4 +1,4 @@
-package de.neuefische.backend.clubBooks;
+package de.neuefische.backend.clubbooks;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
