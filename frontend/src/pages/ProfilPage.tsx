@@ -1,14 +1,14 @@
 import React, {useState} from "react";
-import {Button, Dialog, DialogActions, Paper, Typography} from "@mui/material";
+import {Button, Dialog, DialogActions, Fab, Paper, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import NavBar from "../Components/NavBar";
 import useAuth from "../hooks/useAuth";
-import {green} from "@mui/material/colors";
 import EditIcon from '@mui/icons-material/Edit';
 import ChangeImage from "../Components/ChangeImage";
 import useBooks from "../hooks/useBooks";
 import useFriends from "../hooks/useFriends";
 import useBookClubs from "../hooks/useBookClubs";
+import {ArrowBack} from "@mui/icons-material";
 
 export default function ProfilePage() {
     const {books} = useBooks();
@@ -27,11 +27,15 @@ export default function ProfilePage() {
     return (
         <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
             <NavBar/>
-            <Typography variant={"h4"} sx={{my: 1.5}}>My Profile</Typography>
+            <Typography variant={"h4"} color={"secondary"} sx={{m: 1.5, fontWeight: 600}}>My Profile</Typography>
 
-            <img src={"/api/images/"+user?.imageId} alt={"preview"} style={{width: "200px", height: "200px", borderRadius: "50%"}}/>
+            <Box sx={{position: "relative"}}>
+                <img src={"/api/images/"+user?.imageId} alt={"preview"} style={{position: "relative", width: "200px", height: "200px", borderRadius: "50%"}}/>
+                <Fab color="warning" aria-label="edit" sx={{position: "absolute", bottom: 0, right: 0}}>
+                    <EditIcon onClick={handleShowEditForm}/>
+                </Fab>
+            </Box>
 
-            <Button onClick={handleShowEditForm} sx={{m: 2, bgcolor: green[500]}} variant={"contained"} endIcon={<EditIcon/>}>Change Image</Button>
             <Dialog open={showEditForm} onClose={handleCloseEditForm}>
                 {showEditForm && (
                     <ChangeImage/>
@@ -41,13 +45,17 @@ export default function ProfilePage() {
                 </DialogActions>
             </Dialog>
 
-            <Paper elevation={3} sx={{m: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 350}}>
-                <Typography variant={"h6"} sx={{my: .5}}>Username: {user?.username}</Typography>
-                <Typography variant={"h6"} sx={{my: .5}}>Friends: {friends.length}</Typography>
-                <Typography variant={"h6"} sx={{my: .5}}>Books: {books.length}</Typography>
-                <Typography variant={"h6"} sx={{my: .5}}>Book-Clubs: {bookClubs.length}</Typography>
-                <Typography variant={"h6"} sx={{my: .5}}>Genres: {books.map(book => book.genre).join(", ")}</Typography>
+            <Paper elevation={1} sx={{my: 4, mx: 1, p: 2, display: "flex", textAlign: "center", justifyContent: "space-between", flexWrap: "wrap"}}>
+                <Typography sx={{m: 1, p: 1, fontWeight: 600}}><Typography color={"secondary"}>Username: </Typography>{user?.username}</Typography>
+                <Typography sx={{m: 1, p: 1, fontWeight: 600}}><Typography color={"secondary"}>Friends: </Typography>{friends.length}</Typography>
+                <Typography sx={{m: 1, p: 1, fontWeight: 600}}><Typography color={"secondary"}>Book-Clubs: </Typography>{bookClubs.length}</Typography>
+                <Typography sx={{m: 1, p: 1, fontWeight: 600}}><Typography color={"secondary"}>Books: </Typography>{books.length}</Typography>
+                <Typography sx={{m: 1, p: 1, fontWeight: 600}}><Typography color={"secondary"}>Genres: </Typography>{books.map(book => book.genre).join(", ")}</Typography>
             </Paper>
+
+            <Fab color="primary" aria-label="back">
+                <ArrowBack onClick={() => window.history.back()}/>
+            </Fab>
 
         </Box>
     );

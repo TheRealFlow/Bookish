@@ -1,5 +1,5 @@
 import React, {FormEvent, useCallback, useMemo, useState} from "react";
-import {Link, useLocation, useNavigate, useSearchParams} from "react-router-dom";
+import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import axios from "axios";
 import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {toast} from "react-toastify";
@@ -92,13 +92,13 @@ export default function LoginPage () {
                         onChange={handleChange}
                     />
                 </Box>
+
                 <Box sx={{my: 3, display: "flex", flexDirection: "column"}}>
-                    <Button sx={{px: 6, py: 1.5}} variant={"contained"} type={"submit"}>Login</Button>
-                    <Button sx={{px: 6, py: 1.5, my: 8}} variant={"outlined"}>
-                        <Link to={"/signup" + location.search}>Sign Up now</Link>
-                    </Button>
+                    <Button sx={{px: 5, py: 1.5}} variant={"contained"} type={"submit"}>Login</Button>
+                    <Button sx={{px: 2, py: 1.5, my: 8}} color={"secondary"} onClick={() => navigate("/signup" + location.search)}>Not a Member yet?<br/>Sign up now</Button>
                 </Box>
             </form>
+
         </Container>
     );
 }

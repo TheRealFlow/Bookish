@@ -8,13 +8,13 @@ export default function Logout() {
     const location = useLocation();
 
     const logout = useCallback(async () => {
-        await axios.get("/user/logout");
+        await axios.get("/api/user/logout");
         navigate("/login?redirect=" + encodeURIComponent(location.pathname + location.search));
         window.document.cookie = "";
         window.localStorage.clear();
     }, [location, navigate]);
 
     return (
-        <Button sx={{marginTop: 1}} variant={"outlined"} onClick={logout}>Logout</Button>
+        <Button color={"secondary"} sx={{marginTop: 1}} variant={"contained"} onClick={logout}>Logout</Button>
     )
 }

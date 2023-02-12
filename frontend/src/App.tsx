@@ -6,7 +6,6 @@ import Auth from "./Auth/Auth";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
-import useBooks from "./hooks/useBooks";
 import BookDetailPage from "./pages/BookDetailPage";
 import SearchBooks from "./pages/SearchBooks";
 import {ToastContainer} from "react-toastify";
@@ -19,9 +18,7 @@ import BookClubsPage from "./pages/BookClubsPage";
 import BookClubDetailPage from "./pages/BookClubDetailPage";
 import FriendDetailPage from "./pages/FriendDetailPage";
 
-
 function App() {
-    const {books, getAllBooks, addNewBook, deleteBook, updateBook} = useBooks();
     const [searchParams] = useSearchParams();
       const redirect = useMemo(
           () => searchParams.get("redirect") || "/",
@@ -30,7 +27,7 @@ function App() {
 
     return (
         <>
-          <ToastContainer/>
+        <ToastContainer/>
           <Routes>
             <Route path="/signup" element={
               <NoAuth redirect={redirect}>
@@ -49,12 +46,12 @@ function App() {
             }/>
             <Route path="/mybooks" element={
               <Auth roles={["USER", "ADMIN"]}>
-                  <BooksPage addNewBook={addNewBook} getAllBooks={getAllBooks} books={books}/>
+                  <BooksPage />
               </Auth>
             }/>
               <Route path="/detail/:id" element={
                   <Auth roles={["USER", "ADMIN"]}>
-                      <BookDetailPage deleteBook={deleteBook} updateBook={updateBook} />
+                      <BookDetailPage />
                   </Auth>
               }/>
               <Route path="/search" element={
