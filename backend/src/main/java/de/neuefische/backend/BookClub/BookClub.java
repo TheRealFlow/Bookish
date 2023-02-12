@@ -12,8 +12,8 @@ public class BookClub {
     private String name;
     private String owner;
     private String description;
+    private String image;
+    private String genre;
     private String createdBy;
-    private String[] members;
-    private String[] books;
 }
 

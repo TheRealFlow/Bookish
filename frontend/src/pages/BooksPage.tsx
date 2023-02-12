@@ -1,11 +1,10 @@
-import {Book} from "../Types/Book";
 import React, {useEffect, useState} from "react";
 import getMe from "../hooks/getMe";
 import AddNewBook from "../Components/AddNewBook";
 import {
     Box,
     Button,
-    Container, Dialog, DialogActions, DialogTitle,
+    Dialog, DialogActions, DialogTitle, Fab,
     IconButton,
     ImageList,
     ImageListItem,
@@ -13,17 +12,14 @@ import {
     Typography
 } from "@mui/material";
 import InfoIcon from '@mui/icons-material/Info';
+import AddIcon from '@mui/icons-material/Add';
 import {useNavigate} from "react-router-dom";
 import NavBar from "../Components/NavBar";
+import useBooks from "../hooks/useBooks";
 
-type HomePageProps = {
-    books: Book[];
-    getAllBooks: () => void;
-    addNewBook: (book: Book) => void;
-}
-
-export default function BooksPage(props: HomePageProps) {
+export default function BooksPage() {
     const navigate = useNavigate();
+    const {books} = useBooks();
     const [showAddForm, setShowAddForm] = useState(false);
 
     const handleShowAddForm = () => {
@@ -47,23 +43,25 @@ export default function BooksPage(props: HomePageProps) {
     return (
         <>
         <NavBar />
-        <Container>
+            <Box sx={{m: 2, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                <Typography variant={"h4"} color={"secondary"} sx={{fontWeight: 600}}>My Books</Typography>
+                <Fab color="secondary" size={"small"} aria-label="add">
+                    <AddIcon onClick={handleShowAddForm} />
+                </Fab>
+            </Box>
 
-            <Typography variant={"h3"}>Book List</Typography>
-
-            <Button onClick={handleShowAddForm} variant={"contained"}>Add new Book</Button>
             <Dialog open={showAddForm} onClose={handleCloseAddForm}>
                 <DialogTitle>Add new Book</DialogTitle>
-                <AddNewBook addNewBook={props.addNewBook} getAllBooks={props.getAllBooks} />
+                <AddNewBook />
                 <DialogActions>
-                    <Button onClick={handleCloseAddForm}>Close</Button>
+                    <Button onClick={handleCloseAddForm} color={"secondary"}>Close</Button>
                 </DialogActions>
             </Dialog>
 
             <Box>
-            {props.books.map((book) =>
-                <ImageList sx={{ width: 500, height: 400 }} key={book.id}>
-                    <ImageListItem key={book.imageUrl}>
+                <ImageList sx={{m: .4, width: 370}}>
+                {books.map((book) =>
+                    <ImageListItem key={book.id} sx={{m: .25}}>
                         <img
                             src={book.imageUrl}
                             srcSet={book.imageUrl}
@@ -71,7 +69,7 @@ export default function BooksPage(props: HomePageProps) {
                         />
                         <ImageListItemBar
                             title={book.title}
-                            subtitle={<span>by: {book.author}</span>}
+                            subtitle={book.author}
                             actionIcon={<IconButton
                                 onClick={() => navigate(`/detail/${book.id}`)}
                                 sx={{ color: 'rgba(255, 255, 255, 0.9)' }}
@@ -79,12 +77,9 @@ export default function BooksPage(props: HomePageProps) {
                                 <InfoIcon />
                             </IconButton>}
                         />
-
-                    </ImageListItem>
-                </ImageList>)}
+                    </ImageListItem>)}
+                </ImageList>
             </Box>
-
-        </Container>
         </>
     );
 }

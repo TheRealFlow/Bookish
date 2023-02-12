@@ -1,14 +1,18 @@
 import NavBar from "../Components/NavBar";
-import {Button, Container, Dialog, DialogActions, Paper, Typography} from "@mui/material";
-import React, {useState} from "react";
+import {Box, Button, Dialog, DialogActions, DialogTitle, Fab, Paper, Typography} from "@mui/material";
+import {useState} from "react";
 import SearchUser from "../Components/SearchUser";
 import useFriends from "../hooks/useFriends";
 import {useNavigate} from "react-router-dom";
 import {red} from "@mui/material/colors";
+import AddIcon from "@mui/icons-material/Add";
+import Avatar from "@mui/material/Avatar";
+import {DeleteOutline} from "@mui/icons-material";
 
 export default function FriendsPage() {
     const [showSearch, setShowSearch] = useState(false);
     const {friends, deleteFriend} = useFriends();
+    const [open, setOpen] = useState(false);
     const navigate = useNavigate();
 
     const handleShowSearch = () => {
@@ -17,35 +21,60 @@ export default function FriendsPage() {
     const handleCloseSearch = () => {
         setShowSearch(false);
     }
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <>
             <NavBar />
-            <Container sx={{my: 3, textAlign: "center"}}>
-
-                <Typography variant={"h3"}>Friendlist</Typography>
-
-                <Button onClick={handleShowSearch} variant={"contained"} sx={{my: 2}}>Search for User</Button>
+                <Box sx={{m: 2, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                    <Typography variant={"h4"} color={"secondary"} sx={{fontWeight: 600}}>My Friends</Typography>
+                    <Fab color="secondary" size={"small"} aria-label="add">
+                        <AddIcon onClick={handleShowSearch} />
+                    </Fab>
+                </Box>
                 <Dialog open={showSearch} onClose={handleCloseSearch}>
+                    <DialogTitle>
+                        Add new Friends
+                    </DialogTitle>
                     <SearchUser />
                     <DialogActions>
                         <Button onClick={handleCloseSearch}>Close</Button>
                     </DialogActions>
                 </Dialog>
 
-                <Paper elevation={3} sx={{my: 3, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
-                    <Typography variant={"h6"} sx={{my: 1.5}}>My Friends</Typography>
-                    {friends.map(friend => (
-                        <Paper elevation={6} key={friend.id} sx={{my: 1, p: 1, width: 300}}>
-                            <img src={"/api/images/"+friend.imageId} alt={"preview"} style={{margin: 1.5, width: "75px", height: "75px", borderRadius: "50%"}}/>
-                            <Typography variant={"h6"} sx={{mx: 1.5}}>{friend.username}</Typography>
-                            <Button onClick={() => navigate(`/friends/${friend.id}`)} variant={"outlined"} sx={{mx: 1.5}}>Profile</Button>
-                            <Button onClick={() => deleteFriend(friend.id)} variant={"contained"} sx={{mx: 1.5, bgcolor: red[500]}}>Delete</Button>
-                        </Paper>
-                    ))}
-                </Paper>
-
-            </Container>
+            <Box sx={{m: 2}}>
+                {friends.map(friend => (
+                    <Paper elevation={6} key={friend.id} sx={{my: 2, display: "flex"}}>
+                        <Avatar src={"/api/images/"+friend.imageId} sx={{width: 100, height: 100, m: 1}} />
+                        <Box sx={{display: "flex", flexDirection: "column"}}>
+                            <Typography variant={"h5"} color={"secondary"} sx={{mt: 1, mx: 1.5, fontWeight: 600}}>{friend.username}</Typography>
+                            <Box sx={{display: "flex"}}>
+                                <Button variant={"outlined"} onClick={() => navigate(`/friends/${friend.id}`)} sx={{mx: 1.5, mt: 2}}>Profile</Button>
+                                <Button variant={"contained"} sx={{mx: 1.5, mt: 2, bgcolor: red[500]}} onClick={handleClickOpen}><DeleteOutline/>
+                                <Dialog
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                >
+                                    <DialogTitle id="alert-dialog-title">{"Are you sure you want to delete this Friend?"}</DialogTitle>
+                                    <DialogActions>
+                                        <Button onClick={() => deleteFriend(friend.id)} variant={"outlined"} color={"secondary"} autoFocus>Yes</Button>
+                                        <Button onClick={handleClose} color={"secondary"}>No</Button>
+                                    </DialogActions>
+                                </Dialog>
+                                </Button>
+                            </Box>
+                        </Box>
+                    </Paper>
+                ))}
+            </Box>
         </>
     )
 }

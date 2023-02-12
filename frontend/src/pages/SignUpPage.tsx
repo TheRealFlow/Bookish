@@ -1,6 +1,6 @@
 import React, {FormEvent, useCallback, useState} from "react";
 import axios from "axios";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {toast} from "react-toastify";
 
@@ -93,9 +93,7 @@ export default function SignUpPage () {
 
                 <Box sx={{my: 3, display: "flex", flexDirection: "column"}}>
                     <Button sx={{px: 5, py: 1.5}} variant={"contained"} type={"submit"}>Sign Up</Button>
-                    <Button sx={{px: 5, py: 1.5, my: 8}} variant={"outlined"}>
-                        <Link to={"/"}>Back to Login</Link>
-                    </Button>
+                    <Button sx={{px: 5, py: 1.5, my: 8}} color={"secondary"} onClick={() => navigate("/login")}>Back to Login</Button>
                 </Box>
             </form>
         </Container>

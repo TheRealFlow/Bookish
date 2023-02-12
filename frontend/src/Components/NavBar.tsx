@@ -45,7 +45,7 @@ export default function NavBar() {
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
                                 onClick={handleOpenNavMenu}
-                                color="inherit"
+                                color={"inherit"}
                             >
                                 <MenuIcon />
                             </IconButton>
@@ -68,13 +68,16 @@ export default function NavBar() {
                                 }}
                             >
                                 <MenuItem onClick={handleCloseNavMenu}>
-                                    <Link href='/mybooks'>My Books</Link>
+                                    <Link variant={"button"} href='/mybooks'>My Books</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleCloseNavMenu}>
-                                    <Link href='/bookclubs'>Bookclubs</Link>
+                                    <Link variant={"button"} href='/bookclubs'>My Bookclubs</Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Link variant={"button"} href='/friends'>My Friends</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleCloseNavMenu}>
-                                    <Link href='/search'>Search</Link>
+                                    <Link variant={"button"} href='/search'>Search for Books</Link>
                                 </MenuItem>
                             </Menu>
                         </Box>
@@ -88,8 +91,8 @@ export default function NavBar() {
                                 display: 'flex',
                                 flexGrow: 1,
                                 fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
+                                fontFamily: 'Roboto',
+                                letterSpacing: '.1rem',
                             }}
                         >
                             BOOKISH
@@ -118,10 +121,7 @@ export default function NavBar() {
                                 onClose={handleCloseUserMenu}
                             >
                                 <MenuItem onClick={handleCloseUserMenu}>
-                                    <Link href='/profile'>Profile</Link>
-                                </MenuItem>
-                                <MenuItem onClick={handleCloseUserMenu}>
-                                    <Link href='/friends'>Friends</Link>
+                                    <Link variant={"button"} href='/profile'>My Profile</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleCloseUserMenu}>
                                     <Logout/>

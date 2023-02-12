@@ -2,12 +2,12 @@ import React, {useState} from "react";
 import axios from "axios";
 import {BookAPI} from "../Types/BookAPI";
 import {
-    Box,
-    ImageList,
-    ImageListItem, ImageListItemBar, Paper,
-    TextField, Typography,
+    Box, Container, IconButton,
+    ImageList, ImageListItem, ImageListItemBar, InputBase,
+    Paper, Typography,
 } from "@mui/material";
 import NavBar from "../Components/NavBar";
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function SearchBooks() {
     const [search, setSearch] = useState("");
@@ -28,69 +28,54 @@ export default function SearchBooks() {
     return (
         <>
             <NavBar/>
-            <Paper elevation={5} sx={{p: .25}}>
-
                 <Box sx={{
-                    marginTop: 2,
+                    m: 3,
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center"
                 }}>
-                    <Typography variant={"h4"}>Search for books</Typography>
-                    <Typography>Search for books using the Google Books API</Typography>
+                    <Typography color={"secondary"} variant={"h4"} sx={{fontWeight: 700}}>Search for Books</Typography>
+                    <Typography sx={{fontWeight: 600}}>...using Google Books and find new Books for your Club</Typography>
                 </Box>
 
-                <Box sx={{my: 5, display: "flex", justifyContent: "center"}}>
-                    <form onSubmit={handleSubmit}>
-                        <TextField
+                <Paper component="form"
+                       onSubmit={handleSubmit}
+                       sx={{ m: 2, p: '3px 6px', display: 'flex', alignItems: 'center'}}>
+                        <InputBase
                             id="search-bar"
-                            className="text"
                             value={search}
                             onChange={handleChange}
-                            label="Search for books"
-                            variant="outlined"
-                            placeholder="Search..."
-                            size="medium"
-                            sx={{width: 350}}
+                            placeholder="Search for books"
+                            sx={{ ml: 1, flex: 1 }}
                         />
-                    </form>
-                </Box>
+                    <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+                        <SearchIcon />
+                    </IconButton>
+                </Paper>
 
-            </Paper>
-
-            <ImageList sx={{width: 350}}>
-
-                {result.map((item: BookAPI) => (
-
-                    <ImageListItem key={item.id} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-
-                        <a href={item.volumeInfo.infoLink} target={"_blank"} rel={"noreferrer"}>
-
-                            {item.volumeInfo.imageLinks === undefined ?
-                                <img src={"https://via.placeholder.com/150"} alt={item.volumeInfo.title}/>
-                                :
-                                <img
-                                    height={250}
-                                    width={175}
-                                    src={item.volumeInfo.imageLinks.smallThumbnail}
-                                    srcSet={item.volumeInfo.imageLinks.smallThumbnail}
-                                    alt={item.volumeInfo.title}
-                                />}
-
-                            <ImageListItemBar sx={{borderBottom: 1, backgroundColor: 'rgba(0, 0, 0, 0.65)'}}
-                                              title={item.volumeInfo.title ? item.volumeInfo.title : "No title"}
-                                              subtitle={item.volumeInfo.authors ? item.volumeInfo.authors : "No author"}
-                            />
-
-                        </a>
-
-                    </ImageListItem>
-
-                ))}
-
-            </ImageList>
-
+            <Container sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <ImageList sx={{width: 350}}>
+                    {result.map((item: BookAPI) => (
+                        <ImageListItem key={item.id} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                            <a href={item.volumeInfo.infoLink} target={"_blank"} rel={"noreferrer"}>
+                                {item.volumeInfo.imageLinks === undefined ?
+                                    <img src={"https://via.placeholder.com/150"} alt={item.volumeInfo.title}/>
+                                    :
+                                    <img
+                                        height={250}
+                                        width={175}
+                                        src={item.volumeInfo.imageLinks.smallThumbnail}
+                                        srcSet={item.volumeInfo.imageLinks.smallThumbnail}
+                                        alt={item.volumeInfo.title}
+                                    />}
+                                <ImageListItemBar sx={{borderBottom: 1, backgroundColor: 'rgba(0, 0, 0, 0.65)'}}
+                                                  title={item.volumeInfo.title ? item.volumeInfo.title : "No title"}
+                                                  subtitle={item.volumeInfo.authors ? item.volumeInfo.authors : "No author"}
+                                />
+                            </a>
+                        </ImageListItem>
+                    ))}
+                </ImageList>
+            </Container>
         </>
     )
 }

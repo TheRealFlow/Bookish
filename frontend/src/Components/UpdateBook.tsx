@@ -45,7 +45,7 @@ export default function UpdateBook(props: UpdateBookProps) {
                 <TextField margin={"dense"} name={"isbn"} label="ISBN" type={"text"} variant={"standard"} value={isbn} onChange={(e) => setIsbn(e.target.value)}/>
                 <TextField margin={"dense"} name={"pages"} label="Pages" type={"number"} variant={"standard"} value={pages} onChange={(e) => setPages(parseInt(e.target.value))}/>
                 <TextField margin={"dense"} name={"year"} label="Year" type={"number"} variant={"standard"} value={year} onChange={(e) => setYear(parseInt(e.target.value))}/>
-                <Button sx={{marginTop: 5}} type={"submit"} variant={"contained"}>Update Book</Button>
+                <Button color={"success"} sx={{marginTop: 5}} type={"submit"} variant={"contained"}>Update Book</Button>
             </Box>
         </form>
     );

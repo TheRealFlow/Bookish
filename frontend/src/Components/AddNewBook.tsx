@@ -1,13 +1,10 @@
 import React, {useState} from "react";
 import {Book} from "../Types/Book";
 import {Box, Button, TextField} from "@mui/material";
+import useBooks from "../hooks/useBooks";
 
-type AddNewBookProps = {
-    getAllBooks: () => void;
-    addNewBook: (book: Book) => void;
-}
-
-export default function AddNewBook(props: AddNewBookProps) {
+export default function AddNewBook() {
+    const {addNewBook} = useBooks();
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [description, setDescription] = useState("");
@@ -30,7 +27,7 @@ export default function AddNewBook(props: AddNewBookProps) {
             year: year,
             genre: genre
         }
-        props.addNewBook(newBook);
+        addNewBook(newBook);
     }
 
     return (
@@ -44,7 +41,7 @@ export default function AddNewBook(props: AddNewBookProps) {
                 <TextField margin={"dense"} name={"isbn"} label="ISBN" type={"text"} variant={"standard"} onChange={(e) => setIsbn(e.target.value)}/>
                 <TextField margin={"dense"} name={"pages"} label="Pages" type={"number"} variant={"standard"} onChange={(e) => setPages(parseInt(e.target.value))}/>
                 <TextField margin={"dense"} name={"year"} label="Year" type={"number"} variant={"standard"} onChange={(e) => setYear(parseInt(e.target.value))}/>
-                <Button sx={{marginTop: 5}} type={"submit"} variant={"contained"}>Add new Book</Button>
+                <Button color={"success"} sx={{marginTop: 5}} type={"submit"} variant={"contained"}>Add new Book</Button>
             </Box>
         </form>
     );
