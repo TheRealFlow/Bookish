@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class FriendServiceTests {
+class FriendServiceTests {
 
     @Test
     void getAllFriends() {
