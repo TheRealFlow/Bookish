@@ -126,5 +126,60 @@ class UserControllerTests {
                 .andExpectAll(MockMvcResultMatchers.status().isOk());
     }
 
-}
+    @Test
+    @WithMockUser(username = "user", roles = "BASIC")
+    void getAllUsers_whenUserLoggedInAndCallsGetAllUsers_shouldReturn200() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user"))
+                .andExpectAll(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void getAllUsers_whenUserNotLoggedInAndCallsGetAllUsers_shouldReturn401() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user"))
+                .andExpectAll(MockMvcResultMatchers.status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser(username = "user", roles = "BASIC")
+    void getUserById_whenUserLoggedInAndCallsGetUserById_shouldReturn200() throws Exception {
+        String requestUser = """
+                {
+                    "id": "1",
+                    "username": "user",
+                    "password": "password",
+                    "imageId": "imageId",
+                    "role": "USER"
+                }
+                """;
+        String responseUser = """
+                {
+                    "id": "1",
+                    "username": "user",
+                    "password": "",
+                    "imageId": "imageId",
+                    "role": "USER"
+                }
+                """;
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestUser)
+        ).andExpectAll(
+                MockMvcResultMatchers.status().isOk(),
+                MockMvcResultMatchers.content().json(responseUser,
+                        true
+                ));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/1"))
+                .andExpectAll(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void getUserById_whenUserNotLoggedInAndCallsGetUserById_shouldReturn401() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user/1"))
+                .andExpectAll(MockMvcResultMatchers.status().isUnauthorized());
+    }
+
+
+
+    }
 
