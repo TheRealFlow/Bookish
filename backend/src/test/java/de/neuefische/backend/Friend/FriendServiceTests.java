@@ -7,6 +7,7 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -23,7 +24,7 @@ class FriendServiceTests {
         FriendService friendService = mock(FriendService.class);
         when(friendService.getAll()).thenReturn(friends);
 
-        assert friendService.getAll().equals(friends);
+        assertEquals(friends, friendService.getAll());
     }
 
     @Test
@@ -33,7 +34,7 @@ class FriendServiceTests {
         FriendService friendService = mock(FriendService.class);
         when(friendService.getFriendById("1")).thenReturn(friend);
 
-        assert friendService.getFriendById("1").equals(friend);
+        assertEquals(friend, friendService.getFriendById("1"));
     }
 
     @Test
@@ -43,7 +44,7 @@ class FriendServiceTests {
         FriendService friendService = mock(FriendService.class);
         when(friendService.create(friend)).thenReturn(friend);
 
-        assert friendService.create(friend).equals(friend);
+        assertEquals(friend, friendService.create(friend));
     }
 
     @Test

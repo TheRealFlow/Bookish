@@ -7,6 +7,7 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -23,7 +24,7 @@ class BookClubServiceTests {
         BookClubService bookClubService = mock(BookClubService.class);
         when(bookClubService.getAll()).thenReturn(bookClubs);
 
-        assert bookClubService.getAll().equals(bookClubs);
+        assertEquals(bookClubs, bookClubService.getAll());
     }
 
     @Test
@@ -33,7 +34,7 @@ class BookClubServiceTests {
         BookClubService bookClubService = mock(BookClubService.class);
         when(bookClubService.getBookClubById("1")).thenReturn(bookClub);
 
-        assert bookClubService.getBookClubById("1").equals(bookClub);
+        assertEquals(bookClub, bookClubService.getBookClubById("1"));
     }
 
     @Test
@@ -43,7 +44,7 @@ class BookClubServiceTests {
         BookClubService bookClubService = mock(BookClubService.class);
         when(bookClubService.create(bookClub)).thenReturn(bookClub);
 
-        assert bookClubService.create(bookClub).equals(bookClub);
+        assertEquals(bookClub, bookClubService.create(bookClub));
     }
 
     @Test
