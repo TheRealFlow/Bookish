@@ -124,6 +124,9 @@ export default function NavBar() {
                                     <Link variant={"button"} href='/profile'>My Profile</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleCloseUserMenu}>
+                                    <Link variant={"button"} href='/admin'>Admin-Space</Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleCloseUserMenu}>
                                     <Logout/>
                                 </MenuItem>
                             </Menu>
