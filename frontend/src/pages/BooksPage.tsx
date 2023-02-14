@@ -59,6 +59,9 @@ export default function BooksPage() {
             </Dialog>
 
             <Box>
+                {books.length === 0 &&
+                        <Typography variant={"h5"} sx={{display: "flex", justifyContent: "center", mt: 10}}>...no Books added yet</Typography>
+                }
                 <ImageList sx={{m: .4, width: 370}}>
                 {books.map((book) =>
                     <ImageListItem key={book.id} sx={{m: .25}}>
