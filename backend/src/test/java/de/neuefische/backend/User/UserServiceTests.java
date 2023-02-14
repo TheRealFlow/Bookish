@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -18,6 +20,34 @@ class UserServiceTests {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Test
+    void getAll_shouldReturnListOfAllUsers() {
+        List<AppUser> users = new ArrayList<>();
+        users.add(new AppUser());
+        users.add(new AppUser());
+
+        AppUserRepository repository = Mockito.mock(AppUserRepository.class);
+        AppUserService appUserService = new AppUserService(repository, passwordEncoder);
+        Mockito.when(repository.findAll()).thenReturn(users);
+
+        List<AppUser> actual = appUserService.getAll();
+
+        Assertions.assertEquals(actual, users);
+    }
+
+    @Test
+    void getUserById_shouldReturnUser() {
+        AppUser user = new AppUser();
+
+        AppUserRepository repository = Mockito.mock(AppUserRepository.class);
+        AppUserService appUserService = new AppUserService(repository, passwordEncoder);
+        Mockito.when(repository.findById("1")).thenReturn(Optional.of(user));
+
+        AppUser actual = appUserService.getUserById("1");
+
+        Assertions.assertEquals(actual, user);
+    }
 
     @Test
     void create_whenValidInput_thenReturnNewUser() {
