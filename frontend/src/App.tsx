@@ -17,6 +17,7 @@ import FriendsPage from "./pages/FriendsPage";
 import BookClubsPage from "./pages/BookClubsPage";
 import BookClubDetailPage from "./pages/BookClubDetailPage";
 import FriendDetailPage from "./pages/FriendDetailPage";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
     const [searchParams] = useSearchParams();
@@ -88,6 +89,9 @@ function App() {
                   <Auth roles={["USER", "ADMIN"]}>
                       <BookClubDetailPage />
                   </Auth>
+              }/>
+              <Route path="*" element={
+                  <ErrorPage />
               }/>
           </Routes>
         </>
