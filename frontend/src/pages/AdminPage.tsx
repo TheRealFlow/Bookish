@@ -2,19 +2,19 @@ import NavBar from "../Components/NavBar";
 import {Accordion, AccordionDetails, AccordionSummary, Box, Button, Paper, Typography} from "@mui/material";
 import React from "react";
 import Avatar from "@mui/material/Avatar";
-import useBookClubs from "../hooks/useBookClubs";
 import useUser from "../hooks/useUser";
 import UserCard from "../Components/UserCard";
 import {red} from "@mui/material/colors";
 import {DeleteOutline} from "@mui/icons-material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useNavigate} from "react-router-dom";
-import useBooks from "../hooks/useBooks";
+import useAdminClubs from "../hooks/useAdminClubs";
+import useAdminBooks from "../hooks/useAdminBooks";
 
 export default function AdminPage() {
     const {users} = useUser();
-    const {books} = useBooks();
-    const {bookClubs} = useBookClubs();
+    const {adminBooks} = useAdminBooks()
+    const {adminClubs} = useAdminClubs();
     const navigate = useNavigate();
 
   return (
@@ -44,15 +44,14 @@ export default function AdminPage() {
             </AccordionSummary>
             <AccordionDetails>
                 <Box sx={{m: 2}}>
-                    {books.map(book => (
-                        <Paper elevation={6} key={book.id} sx={{my: 2, display: "flex", justifyContent: "space-around"}}>
-                            <Avatar src={book.imageUrl} sx={{my: 1, width: 50, height: 50}} />
+                    {adminBooks.map(book => (
+                        <Paper elevation={6} key={book.id} sx={{my: 2, p: 1, display: "flex", justifyContent: "space-around"}}>
+                            <Avatar src={book.imageUrl} sx={{mx: 1, width: 50, height: 50}} />
                             <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
-                                <Typography variant={"h6"} color={"secondary"} sx={{fontWeight: 600}}>{book.title}</Typography>
-                                <Typography sx={{mx: 1}}>{book.author}</Typography>
+                                <Typography color={"secondary"} sx={{fontWeight: 600}}>{book.title}</Typography>
                             </Box>
-                            <Button variant={"contained"} color={"error"} sx={{my: 1}} onClick={() => navigate("/books/"+book.id)}>
-                                <DeleteOutline sx={{mr: 1}}/>Delete
+                            <Button variant={"contained"} color={"error"} sx={{m: 1}} onClick={() => navigate("/books/"+book.id)}>
+                                <DeleteOutline sx={{mr: 1}}/>
                             </Button>
                         </Paper>
                     ))}
@@ -66,7 +65,7 @@ export default function AdminPage() {
             </AccordionSummary>
             <AccordionDetails>
                 <Box sx={{m: 2}}>
-                    {bookClubs.map(bookClub => (
+                    {adminClubs.map(bookClub => (
                         <Paper elevation={6} key={bookClub.id} sx={{my: 2, display: "flex", justifyContent: "space-around"}}>
                             <Avatar src={bookClub.image} sx={{my: 1, width: 50, height: 50}} />
                             <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
