@@ -1,7 +1,7 @@
 package de.neuefische.backend.ClubBook;
 
-import de.neuefische.backend.ClubBooks.ClubBooks;
-import de.neuefische.backend.ClubBooks.ClubBooksService;
+import de.neuefische.backend.club_books.ClubBooks;
+import de.neuefische.backend.club_books.ClubBooksService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
