@@ -1,6 +1,6 @@
 import NavBar from "../Components/NavBar";
 import {Box, Button, Dialog, DialogActions, DialogTitle, Fab, Paper, Typography} from "@mui/material";
-import {useState} from "react";
+import React, {useState} from "react";
 import SearchUser from "../Components/SearchUser";
 import useFriends from "../hooks/useFriends";
 import {useNavigate} from "react-router-dom";
@@ -49,6 +49,9 @@ export default function FriendsPage() {
                 </Dialog>
 
             <Box sx={{m: 2}}>
+                {friends.length === 0 &&
+                    <Typography variant={"h5"} sx={{display: "flex", justifyContent: "center", mt: 10}}>...no Friends added yet</Typography>
+                }
                 {friends.map(friend => (
                     <Paper elevation={6} key={friend.id} sx={{my: 2, display: "flex"}}>
                         <Avatar src={"/api/images/"+friend.imageId} sx={{width: 100, height: 100, m: 1}} />

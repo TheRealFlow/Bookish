@@ -18,6 +18,7 @@ import BookClubsPage from "./pages/BookClubsPage";
 import BookClubDetailPage from "./pages/BookClubDetailPage";
 import FriendDetailPage from "./pages/FriendDetailPage";
 import AdminPage from "./pages/AdminPage";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
     const [searchParams] = useSearchParams();
@@ -95,6 +96,9 @@ function App() {
                         <AdminPage />
                     </Auth>
                 }/>
+              <Route path="*" element={
+                  <ErrorPage />
+              }/>
           </Routes>
         </>
   );

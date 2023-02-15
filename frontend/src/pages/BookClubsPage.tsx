@@ -37,6 +37,9 @@ export default function BookClubsPage() {
                 </Dialog>
 
                 <Box sx={{m: 2}}>
+                    {bookClubs.length === 0 &&
+                        <Typography variant={"h5"} sx={{display: "flex", justifyContent: "center", mt: 10}}>...no Book-Clubs added yet</Typography>
+                    }
                     {bookClubs.map(bookClub => (
                     <Paper elevation={6} key={bookClub.id} sx={{my: 2, display: "flex"}} onClick={() => navigate(`/bookclubs/${bookClub.id}`)}>
                         <Avatar src={bookClub.image} sx={{width: 100, height: 100, m: 1}} />
