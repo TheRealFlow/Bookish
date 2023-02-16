@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/api/user/login").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .anyRequest()
-                .authenticated()
+                .permitAll()
                 .and()
                 .build();
     }
