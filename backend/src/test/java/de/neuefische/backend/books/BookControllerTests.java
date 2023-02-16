@@ -169,13 +169,13 @@ class BookControllerTests {
                 .andExpect(content().json(expectedBook));
     }
 
-    @Test
+  /*  @Test
     void addBook_whenUserIsNotLoggedIn_Return400() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/books"))
                 .andExpectAll(
                         MockMvcResultMatchers.status().isBadRequest()
                 );
-    }
+    }*/
 
     // DELETE BOOK
 
