@@ -12,6 +12,7 @@ import React, {useState} from "react";
 import {Link} from "@mui/material";
 import Logout from "./Logout";
 import useAuth from "../hooks/useAuth";
+import Bookish_Logo from "../assets/Bookish_Logo.png";
 
 export default function NavBar() {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -95,7 +96,7 @@ export default function NavBar() {
                                 letterSpacing: '.1rem',
                             }}
                         >
-                            BOOKISH
+                            <img src={Bookish_Logo} alt="Bookish Logo" style={{height: 40, width: 200}}/>
                         </Link>
 
                         <Box sx={{ flexGrow: 0 }}>
