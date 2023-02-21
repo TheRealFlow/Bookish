@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class AdminBooksServiceTests {
+class AdminBooksServiceTests {
 
     @Test
     void getAllBooks() {

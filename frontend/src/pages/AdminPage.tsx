@@ -5,8 +5,6 @@ import {
     AccordionSummary,
     Box,
     Button,
-    Dialog, DialogActions, DialogTitle,
-    Fab,
     Paper,
     Typography
 } from "@mui/material";
@@ -24,15 +22,6 @@ export default function AdminPage() {
     const {adminBooks, deleteAdminBook} = useAdminBooks()
     const {adminClubs, deleteAdminClub} = useAdminClubs();
     const navigate = useNavigate();
-/*    const [open, setOpen] = useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };*/
 
   return (
     <>
@@ -59,24 +48,6 @@ export default function AdminPage() {
                             <Button variant={"contained"} color={"error"} sx={{}} onClick={() => deleteUser(user.id)}>
                                 <DeleteOutline sx={{mr: 1}} />
                             </Button>
-                           {/* <Box sx={{m: 4, display: "flex", justifyContent: "space-around"}}>
-                                <Fab color="error" aria-label="delete">
-                                    <DeleteIcon onClick={handleClickOpen}/>
-                                    <Dialog
-                                        open={open}
-                                        onClose={handleClose}
-                                        aria-labelledby="alert-dialog-title"
-                                        aria-describedby="alert-dialog-description"
-                                    >
-                                        <DialogTitle id="alert-dialog-title">{"Are you sure you want to delete this User?"}</DialogTitle>
-                                        <DialogActions>
-                                            <Button onClick={() => deleteUser(user.id)} variant={"outlined"} color={"secondary"} autoFocus>Yes</Button>
-                                            <Button onClick={handleClose} color={"secondary"}>No</Button>
-                                        </DialogActions>
-                                    </Dialog>
-                                </Fab>
-                            </Box>*/}
-
                         </Paper>
                     ))}
                 </Box>
