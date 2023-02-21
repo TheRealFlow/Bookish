@@ -1,5 +1,15 @@
 import NavBar from "../Components/NavBar";
-import {Accordion, AccordionDetails, AccordionSummary, Box, Button, Paper, Typography} from "@mui/material";
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Box,
+    Button,
+    Dialog, DialogActions, DialogTitle,
+    Fab,
+    Paper,
+    Typography
+} from "@mui/material";
 import React from "react";
 import Avatar from "@mui/material/Avatar";
 import useUser from "../hooks/useUser";
@@ -14,6 +24,15 @@ export default function AdminPage() {
     const {adminBooks, deleteAdminBook} = useAdminBooks()
     const {adminClubs, deleteAdminClub} = useAdminClubs();
     const navigate = useNavigate();
+/*    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };*/
 
   return (
     <>
@@ -30,15 +49,34 @@ export default function AdminPage() {
             <AccordionDetails>
                 <Box>
                     {users.map(user => (
-                        <Paper elevation={6} key={user.id} sx={{my: 1.5, p: 1, display: "flex", justifyContent: "space-evenly"}}>
-                            <Avatar src={user.imageId} sx={{mx: 1, width: 50, height: 50}} />
+                        <Paper elevation={6} key={user.id} sx={{my: 1.5, p: 1, display: "flex", justifyContent: "space-around"}}>
+                            <Avatar src={"/api/images/"+user?.imageId} sx={{width: 50, height: 50}} />
                             <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
                                 <Typography color={"secondary"} sx={{fontWeight: 600}}>{user.username}</Typography>
                             </Box>
-                            <Button sx={{my: 2}} variant={"outlined"} onClick={() => navigate(`/user/${user.id}`)}>Visit</Button>
-                            <Button variant={"contained"} color={"error"} sx={{m: 1}} onClick={() => deleteUser(user.id)}>
+                            <Button sx={{}} variant={"outlined"} onClick={() => navigate(`/user/${user.id}`)}>Visit</Button>
+
+                            <Button variant={"contained"} color={"error"} sx={{}} onClick={() => deleteUser(user.id)}>
                                 <DeleteOutline sx={{mr: 1}} />
                             </Button>
+                           {/* <Box sx={{m: 4, display: "flex", justifyContent: "space-around"}}>
+                                <Fab color="error" aria-label="delete">
+                                    <DeleteIcon onClick={handleClickOpen}/>
+                                    <Dialog
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="alert-dialog-title"
+                                        aria-describedby="alert-dialog-description"
+                                    >
+                                        <DialogTitle id="alert-dialog-title">{"Are you sure you want to delete this User?"}</DialogTitle>
+                                        <DialogActions>
+                                            <Button onClick={() => deleteUser(user.id)} variant={"outlined"} color={"secondary"} autoFocus>Yes</Button>
+                                            <Button onClick={handleClose} color={"secondary"}>No</Button>
+                                        </DialogActions>
+                                    </Dialog>
+                                </Fab>
+                            </Box>*/}
+
                         </Paper>
                     ))}
                 </Box>
