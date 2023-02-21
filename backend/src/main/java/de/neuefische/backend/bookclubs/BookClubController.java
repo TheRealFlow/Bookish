@@ -26,6 +26,12 @@ public class BookClubController {
         return bookClubService.getBookClubById(id);
     }
 
+    @PutMapping("/{id}")
+    public BookClub updateBookClub (@PathVariable String id, @RequestBody BookClub bookClub) {
+        bookClub.setId(id);
+        return bookClubService.updateBookClub(bookClub);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteBookClub (@PathVariable String id) {
         bookClubService.deleteBookClub(id);

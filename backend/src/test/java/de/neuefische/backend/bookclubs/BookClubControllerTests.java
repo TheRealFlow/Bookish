@@ -182,6 +182,59 @@ class BookClubControllerTests {
                 );
     }
 
+    @Test
+    @WithMockUser(username = "user", password = "pwd", roles = "USER")
+    void updateBookClub_whenUserIsLoggedIn_updateBookClub() throws Exception {
+        String requestUser = """
+                {
+                    "username":"user",
+                    "password":"pwd"
+                }
+                """;
+
+        String expectedUser = """
+                {
+                    "username": "user",
+                    "password": ""
+                }
+                """;
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestUser))
+                .andExpect(status().isOk())
+                .andExpect(content().json(expectedUser));
+
+        String requestBookClub = """  
+                {
+                    "id": "1",
+                    "name": "BookClub1",
+                    "description": "BookClub1Description"
+                 }
+                """;
+
+        String expectedBookClub = """  
+                {
+                    "id": "1",
+                    "name": "BookClub1",
+                    "description": "BookClub1Description"
+                }
+                """;
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/bookclubs/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBookClub))
+                .andExpect(status().isOk())
+                .andExpect(content().json(expectedBookClub));
+    }
+
+    @Test
+    void updateBookClub_whenUserIsNotLoggedIn_Return401() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/bookclubs/1"))
+                .andExpectAll(
+                        MockMvcResultMatchers.status().isUnauthorized()
+                );
+    }
 
     @Test
     @WithMockUser(username = "user", password = "pwd", roles = "USER")
