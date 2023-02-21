@@ -3,6 +3,7 @@ import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {toast} from "react-toastify";
+import Bookish_Logo from "../assets/Bookish_Logo.png";
 
 export default function SignUpPage () {
     const [credentials, setCredentials] = useState({
@@ -57,9 +58,11 @@ export default function SignUpPage () {
     );
 
     return (
-        <Container sx={{my: 10, display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <Container sx={{my: 8, display: "flex", flexDirection: "column", alignItems: "center"}}>
 
-            <Typography sx={{my: 2}} variant={"h3"}>Sign Up</Typography>
+            <Box component={"img"} src={Bookish_Logo} alt={"Bookish Logo"} sx={{mb: 4, height: 70, width: 300}}/>
+
+            <Typography sx={{my: 3}} variant={"h3"}>Sign Up</Typography>
 
             {errors.length > 0 && (
                 <div>

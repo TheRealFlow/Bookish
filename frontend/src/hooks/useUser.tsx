@@ -17,5 +17,12 @@ export default function useUser() {
             .catch((error) => toast.error(error.message));
     }
 
-    return {users, getAllUsers};
+    const deleteUser = (id: string | undefined) => {
+        axios.delete("/api/user/"+id)
+            .then(response => response.data)
+            .then(() => getAllUsers())
+            .catch((error) => toast.error(error.message));
+    }
+
+    return {users, getAllUsers, deleteUser};
 }

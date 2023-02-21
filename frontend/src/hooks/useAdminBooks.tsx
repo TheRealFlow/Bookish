@@ -23,7 +23,7 @@ export default function useAdminBooks() {
             .catch((error) => console.log(error.message));
     }
 
-    const deleteAdminBook = (id: string) => {
+    const deleteAdminBook = (id: string | undefined) => {
         axios.delete(`/api/admin/books/${id}`)
             .then(() => console.log("Book deleted successfully!"))
             .then(() => getAllAdminBooks())

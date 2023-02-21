@@ -1,11 +1,14 @@
-package de.neuefische.backend.bookclubs;
+package de.neuefische.backend.admin_clubs;
 
+import de.neuefische.backend.bookclubs.BookClub;
+import de.neuefische.backend.bookclubs.BookClubService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -13,7 +16,7 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-class BookClubServiceTests {
+class AdminClubsServiceTests {
 
     @Test
     void getAllBookClubs() {
@@ -35,26 +38,6 @@ class BookClubServiceTests {
         when(bookClubService.getBookClubById("1")).thenReturn(bookClub);
 
         assertEquals(bookClub, bookClubService.getBookClubById("1"));
-    }
-
-    @Test
-    void addNewBookClub() {
-        BookClub bookClub = new BookClub();
-
-        BookClubService bookClubService = mock(BookClubService.class);
-        when(bookClubService.create(bookClub)).thenReturn(bookClub);
-
-        assertEquals(bookClub, bookClubService.create(bookClub));
-    }
-
-    @Test
-    void updateBookClub() {
-        BookClub bookClub = new BookClub();
-
-        BookClubService bookClubService = mock(BookClubService.class);
-        when(bookClubService.updateBookClub(bookClub)).thenReturn(bookClub);
-
-        assertEquals(bookClub, bookClubService.updateBookClub(bookClub));
     }
 
     @Test

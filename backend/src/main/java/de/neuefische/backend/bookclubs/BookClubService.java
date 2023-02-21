@@ -29,6 +29,10 @@ public class BookClubService {
                     .orElseThrow(() -> new NoSuchElementException("BookClub with the ID: " + id + " not found"));
         }
 
+        public BookClub updateBookClub(BookClub bookClub) {
+            return bookClubRepository.save(bookClub);
+        }
+
         public void deleteBookClub(String id) {
             bookClubRepository.deleteById(id);
         }

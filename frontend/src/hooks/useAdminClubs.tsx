@@ -23,7 +23,7 @@ export default function useAdminClubs() {
             .catch((error) => console.log(error.message));
     }
 
-    const deleteAdminClub = (id: string) => {
+    const deleteAdminClub = (id: string | undefined) => {
         axios.delete(`/api/admin/clubs/${id}`)
             .then(() => console.log("BookClub deleted successfully!"))
             .then(() => getAllAdminClubs())

@@ -63,8 +63,8 @@ export default function SearchBooks() {
                                     <img
                                         height={250}
                                         width={175}
-                                        src={item.volumeInfo.imageLinks.smallThumbnail}
-                                        srcSet={item.volumeInfo.imageLinks.smallThumbnail}
+                                        src={item.volumeInfo.imageLinks.thumbnail}
+                                        srcSet={item.volumeInfo.imageLinks.thumbnail}
                                         alt={item.volumeInfo.title}
                                     />}
                                 <ImageListItemBar sx={{borderBottom: 1, backgroundColor: 'rgba(0, 0, 0, 0.65)'}}

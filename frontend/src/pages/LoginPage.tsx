@@ -3,6 +3,7 @@ import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import axios from "axios";
 import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {toast} from "react-toastify";
+import Bookish_Logo from "../assets/Bookish_Logo.png";
 
 export default function LoginPage () {
     const [credentials, setCredentials] = useState({
@@ -59,15 +60,17 @@ export default function LoginPage () {
     );
 
     return (
-        <Container sx={{my: 10, display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <Container sx={{my: 8, display: "flex", flexDirection: "column", alignItems: "center"}}>
 
-                <Typography sx={{my: 2}} variant={"h3"}>Login</Typography>
+            <Box component={"img"} src={Bookish_Logo} alt={"Bookish Logo"} sx={{mb: 4, height: 70, width: 300}}/>
 
-                {errors.length > 0 && (
-                        <div>
-                            {errors.map((error) => <p key={error}>{error}</p>)}
-                        </div>
-                )}
+            <Typography sx={{my: 3}} variant={"h3"}>Login</Typography>
+
+            {errors.length > 0 && (
+                    <div>
+                        {errors.map((error) => <p key={error}>{error}</p>)}
+                    </div>
+            )}
 
             <form onSubmit={login}>
                 <Box sx={{my: 2}}>
