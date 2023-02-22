@@ -1,7 +1,7 @@
 import {Box, Button, Paper, Typography} from "@mui/material";
 import useUserDetails from "../hooks/useUserDetails";
 import {useParams} from "react-router-dom";
-import NavBar from "../Components/NavBar";
+import NavBar from "../components/NavBar";
 import React from "react";
 import useFriends from "../hooks/useFriends";
 

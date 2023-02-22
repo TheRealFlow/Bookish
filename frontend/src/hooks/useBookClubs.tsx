@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {BookClub} from "../Types/BookClub";
+import {BookClub} from "../types/BookClub";
 import {toast} from "react-toastify";
 import axios from "axios";
 

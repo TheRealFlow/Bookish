@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import {Button, Dialog, DialogActions, Fab, Paper, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
-import NavBar from "../Components/NavBar";
+import NavBar from "../components/NavBar";
 import useAuth from "../hooks/useAuth";
 import EditIcon from '@mui/icons-material/Edit';
-import ChangeImage from "../Components/ChangeImage";
+import ChangeImage from "../components/ChangeImage";
 import useBooks from "../hooks/useBooks";
 import useFriends from "../hooks/useFriends";
 import useBookClubs from "../hooks/useBookClubs";

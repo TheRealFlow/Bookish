@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
-import {ClubMember} from "../Types/ClubMember";
+import {ClubMember} from "../types/ClubMember";
 
 export default function useClubMembers() {
     const [clubMembers, setClubMembers] = useState<ClubMember[]>([])

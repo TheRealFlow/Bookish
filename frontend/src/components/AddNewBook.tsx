@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Book} from "../Types/Book";
+import {Book} from "../types/Book";
 import {Box, Button, TextField} from "@mui/material";
 import useBooks from "../hooks/useBooks";
 

@@ -1,4 +1,4 @@
-import {BookClub} from "../Types/BookClub";
+import {BookClub} from "../types/BookClub";
 import React, {useState} from "react";
 import useBookClubs from "../hooks/useBookClubs";
 import {Box, Button, TextField} from "@mui/material";

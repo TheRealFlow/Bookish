@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from '@mui/material/Typography';
-import NavBar from "../Components/NavBar";
+import NavBar from "../components/NavBar";
 import useAuth from "../hooks/useAuth";
 import {Box, Button, Container} from "@mui/material";
 import ArrowLeftOutlinedIcon from '@mui/icons-material/ArrowLeftOutlined';

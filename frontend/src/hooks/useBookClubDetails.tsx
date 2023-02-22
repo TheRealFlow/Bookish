@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {BookClub} from "../Types/BookClub";
+import {BookClub} from "../types/BookClub";
 
 export default function useBookClubDetails(id: string|undefined) {
     const [bookClubDetails, setBookClubDetails] = useState<BookClub>();

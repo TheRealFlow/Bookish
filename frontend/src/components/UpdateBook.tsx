@@ -1,4 +1,4 @@
-import {Book} from "../Types/Book";
+import {Book} from "../types/Book";
 import React, {useState} from "react";
 import {Box, Button, TextField} from "@mui/material";
 

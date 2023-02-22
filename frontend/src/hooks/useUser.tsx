@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {User} from "../Types/User";
+import {User} from "../types/User";
 import axios from "axios";
 import {toast} from "react-toastify";
 

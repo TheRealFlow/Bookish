@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {Book} from "../Types/Book";
+import {Book} from "../types/Book";
 
 export default function useBookDetails(id: string|undefined) {
     const [bookDetails, setBookDetails] = useState<Book>();

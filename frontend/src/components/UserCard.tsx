@@ -1,6 +1,6 @@
 import {Button, Paper, Typography} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import {User} from "../Types/User";
+import {User} from "../types/User";
 import {useNavigate} from "react-router-dom";
 
 export default function UserCard({id, username, imageId}: User) {

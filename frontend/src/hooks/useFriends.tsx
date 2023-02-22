@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Friend} from "../Types/Friend";
+import {Friend} from "../types/Friend";
 import axios from "axios";
 import {toast} from "react-toastify";
 

@@ -1,7 +1,7 @@
 import {useParams} from "react-router-dom";
 import useFriendDetails from "../hooks/useFriendDetails";
 import {Box, Button, Fab, Paper, Typography} from "@mui/material";
-import NavBar from "../Components/NavBar";
+import NavBar from "../components/NavBar";
 import useClubMembers from "../hooks/useClubMembers";
 import React from "react";
 import {ArrowBack} from "@mui/icons-material";

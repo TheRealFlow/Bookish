@@ -1,7 +1,7 @@
-import NavBar from "../Components/NavBar";
+import NavBar from "../components/NavBar";
 import {Box, Button, Dialog, DialogActions, DialogTitle, Fab, Paper, Typography} from "@mui/material";
 import React, {useState} from "react";
-import SearchUser from "../Components/SearchUser";
+import SearchUser from "../components/SearchUser";
 import useFriends from "../hooks/useFriends";
 import {useNavigate} from "react-router-dom";
 import {red} from "@mui/material/colors";

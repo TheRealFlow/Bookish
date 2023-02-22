@@ -1,9 +1,9 @@
-import NavBar from "../Components/NavBar";
+import NavBar from "../components/NavBar";
 import {Box, Button, Dialog, DialogActions, Fab, Paper, Typography} from "@mui/material";
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import useBookClubs from "../hooks/useBookClubs";
-import AddNewBookClub from "../Components/AddNewBookClub";
+import AddNewBookClub from "../components/AddNewBookClub";
 import AddIcon from "@mui/icons-material/Add";
 import Avatar from "@mui/material/Avatar";
 import ArrowRightOutlinedIcon from "@mui/icons-material/ArrowRightOutlined";

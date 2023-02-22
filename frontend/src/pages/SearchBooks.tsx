@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import axios from "axios";
-import {BookAPI} from "../Types/BookAPI";
+import {BookAPI} from "../types/BookAPI";
 import {
     Box, Container, IconButton,
     ImageList, ImageListItem, ImageListItemBar, InputBase,
     Paper, Typography,
 } from "@mui/material";
-import NavBar from "../Components/NavBar";
+import NavBar from "../components/NavBar";
 import SearchIcon from '@mui/icons-material/Search';
 
 export default function SearchBooks() {

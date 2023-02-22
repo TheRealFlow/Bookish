@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import getMe from "../hooks/getMe";
-import AddNewBook from "../Components/AddNewBook";
+import AddNewBook from "../components/AddNewBook";
 import {
     Box,
     Button,
@@ -14,7 +14,7 @@ import {
 import InfoIcon from '@mui/icons-material/Info';
 import AddIcon from '@mui/icons-material/Add';
 import {useNavigate} from "react-router-dom";
-import NavBar from "../Components/NavBar";
+import NavBar from "../components/NavBar";
 import useBooks from "../hooks/useBooks";
 
 export default function BooksPage() {

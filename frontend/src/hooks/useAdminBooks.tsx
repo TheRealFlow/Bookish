@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Book} from "../Types/Book";
+import {Book} from "../types/Book";
 import axios from "axios";
 
 export default function useAdminBooks() {

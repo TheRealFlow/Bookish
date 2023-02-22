@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import useBookDetails from "../hooks/useBookDetails";
-import {Book} from "../Types/Book";
+import {Book} from "../types/Book";
 import {Box, Button, Container, Dialog, DialogActions, DialogTitle, Fab, Paper, Typography} from "@mui/material";
-import UpdateBook from "../Components/UpdateBook";
-import NavBar from "../Components/NavBar";
+import UpdateBook from "../components/UpdateBook";
+import NavBar from "../components/NavBar";
 import useClubBooks from "../hooks/useClubBooks";
 import useBooks from "../hooks/useBooks";
 import EditIcon from "@mui/icons-material/Edit";
