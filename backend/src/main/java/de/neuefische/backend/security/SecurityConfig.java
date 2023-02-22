@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .antMatchers(HttpMethod.POST, "/api/user").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/user/login").permitAll()
-                .antMatchers("/api/mybooks" + "/api/detail/:id" + "/api/search" + "/api/friends" + "/api/friends/:id" + "/api/user/:id" + "/api/bookclubs" + "/api/bookclubs/:id" + "/api/admin").authenticated()
+                .antMatchers("/api/admin/books" + "/api/admin/clubs" + "/api/bookclubs" + "/api/books" + "/api/club-books" + "/api/club-member" + "/api/images" + "/api/friends" + "/api/admin").authenticated()
                 .anyRequest()
                 .permitAll()
                 .and()
